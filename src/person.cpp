@@ -11,7 +11,7 @@ string  Person::get_surname()    const { return surname; }
 string  Person::get_email()      const { return email; } 
 string  Person::get_regnum()     const { return reg_num; } 
 int     Person::get_age()        const { return age; }
-int     Person::get_count()      const { return count; }
+int     Person::get_total_counter() { return count; } 
 
 //Mutator functions for the Person class
 void    Person::set_name(string new_name)       { Person::name = new_name; }
