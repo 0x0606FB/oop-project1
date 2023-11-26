@@ -9,18 +9,19 @@ class Secretary {
         
     public:
         
-        void add_person(Person&){
-            Person newperson = new Person;
+        void add_person(Person &p){
+
             
-            personvec.push_back()
+            personvec.push_back(&p);
 
 
         };
         
+        
+
         Secretary();
         
         
         ~Secretary();
 };
 
-add_person(nikos)
