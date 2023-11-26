@@ -37,7 +37,7 @@ class Person{
         
         static int  get_total_counter();
 
-        friend      std::ostream& operator<< (std::ostream& stream, const Person p);  
+        friend      std::ostream& operator<< (std::ostream&, const Person);  
 
         
 
