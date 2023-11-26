@@ -1,27 +1,9 @@
-#include "./../headers/person.hpp"
 #include "./../headers/secretary.hpp"
 
-class Secretary {
+using std::cout;
+using std::cin;
+using std::string;
 
-    private:
-        vector<Person *> personvec;
-        
-        
-    public:
-        
-        void add_person(Person &p){
-
-            
-            personvec.push_back(&p);
-
-
-        };
-        
-        
-
-        Secretary();
-        
-        
-        ~Secretary();
-};
-
+void        Secretary::add_person(Person&) {
+                
+}
