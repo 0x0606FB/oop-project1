@@ -48,8 +48,15 @@ int main() {
     
     Secretary testSecretary;
 
-    // add people
-    // find one of them
+    testSecretary + john;
+    testSecretary + jane;
+    testSecretary + testPerson;
+
+    
+
+
+
+
 
 
     return 0;

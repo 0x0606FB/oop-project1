@@ -17,6 +17,8 @@ class Secretary {
     public:
         
         void add_person(Person&);
+
+        bool find_person(Person);
         
         Secretary operator+ (Person);
 
