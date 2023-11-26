@@ -21,13 +21,13 @@ void    Person::set_email(string new_email)     { Person::email = new_email; }
 void    Person::set_age(int new_age)            { age = new_age; }
 
 //Overloading the "<<" operator
-std::ostream& operator<< (std::ostream& stream, const Person p) {
+std::ostream& operator<< (std::ostream& stream, const Person p){
 
-    stream << "Name:"                << p.get_name()       << endl 
-           << "Surname:"             << p.get_surname()    << endl
-           << "Registration Number:" << p.get_regnum()     << endl
-           << "Email:"               << p.get_email()      << endl
-           << "Age:"                 << p.get_age()        << endl;
+    stream << "Name:                  " << p.get_name()       << endl 
+           << "Surname:               " << p.get_surname()    << endl
+           << "Registration Number:   " << p.get_regnum()     << endl
+           << "Email:                 " << p.get_email()      << endl
+           << "Age:                   " << p.get_age()        << endl;
 
     return stream;
 }
