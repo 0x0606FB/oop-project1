@@ -18,6 +18,8 @@ class Secretary {
         
         void add_person(Person&);
         
+        Secretary operator+ (Person);
+
         Secretary();
         
         
