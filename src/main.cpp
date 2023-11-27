@@ -19,48 +19,19 @@ int main() {
     
     // Person testPerson;
 
-    // string buffer;
-    // int age;
-
-    // cout << "Please give name: ";
-    // cin >>  buffer;
-    // testPerson.set_name(buffer);
-    // buffer.clear();
-
-    // cout << "Please give surname: ";
-    // cin >>  buffer;
-    // testPerson.set_surname(buffer);
-    // buffer.clear();
-
-    // cout << "Please give register number: ";
-    // cin >>  buffer;
-    // testPerson.set_regnum(buffer);
-    // buffer.clear();
-
-    // cout << "Please give e-mail address: ";
-    // cin >>  buffer;
-    // testPerson.set_email(buffer);
-    // buffer.clear();
-
-    // cout << "Please give age: ";
-    // cin >>  age;
-    // testPerson.set_age(age);
-    
     Secretary testSecretary;
 
     // testSecretary.add_person();
 
-    // testSecretary.add_person();
+
     testSecretary + jimmy;
     testSecretary + nikos;
+    delete nikos;
+    delete jimmy;
     testSecretary.dump();
 
+
     
-
-
-
-
-
 
     return 0;
 }

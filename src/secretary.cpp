@@ -1,5 +1,6 @@
 #include "./../headers/secretary.hpp"
 #include <algorithm>
+#include <iterator>
 
 using std::cout;
 using std::cin;
@@ -51,13 +52,14 @@ void        Secretary::add_person(Person *p) {
 // }
 
 //Dumps all entries of the secretary vector via iterator.
-void        Secretary::dump() {
-    for (Person *p : this->personvec) { cout << *p ; }
+void        Secretary::dump() const{
+    for (auto p : this->personvec) { cout << *p; }
 }
 
 //Constructor and destructor.
 Secretary::Secretary() {}   
-Secretary::~Secretary() {}
+Secretary::~Secretary() {
+}
 
 //Overloading function for the "+" operator.
 Secretary Secretary::operator+(Person *p) {

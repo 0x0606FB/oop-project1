@@ -18,7 +18,7 @@ class Secretary {
         void add_person();
         void add_person(Person*);
 
-        void dump();
+        void dump() const;
 
         bool find_person(Person&);
         
