@@ -26,9 +26,18 @@ int main() {
 
     testSecretary + jimmy;
     testSecretary + nikos;
-    delete nikos;
-    delete jimmy;
-    testSecretary.dump();
+    // testSecretary.dump();
+
+    // Secretary testSecretary2(testSecretary);
+    // testSecretary2.dump();
+
+    Secretary testSecretary3;
+    testSecretary3 = testSecretary;
+
+    testSecretary3.dump();
+    
+
+
 
 
     

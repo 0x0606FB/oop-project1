@@ -23,9 +23,12 @@ class Secretary {
         bool find_person(Person&);
         
         Secretary operator+ (Person*);
+        // Secretary operator= (Secretary);
+
 
         Secretary();
         
-        
+        Secretary(const Secretary &secr);
+
         ~Secretary();
 };

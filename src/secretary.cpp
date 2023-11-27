@@ -61,10 +61,28 @@ Secretary::Secretary() {}
 Secretary::~Secretary() {
 }
 
+//Copy constructor.
+Secretary::Secretary(const Secretary &secr){
+
+
+    for(int i = 0; i < secr.personvec.size(); i++){
+        this->personvec.push_back(secr.personvec.at(i));
+    }
+    cout << "Custom copy constructor" << endl;
+
+}
+
+
 //Overloading function for the "+" operator.
 Secretary Secretary::operator+(Person *p) {
     this->add_person(p);
     return *this;
 }
+
+// //Overloading function for the "=" operator.
+// Secretary Secretary::operator=(Secretary secr) {
+//     Secretary secretarycreated(secr);
+//     return secretarycreated;
+// }
 
 
