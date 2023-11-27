@@ -53,8 +53,15 @@ int main() {
     // testSecretary.add_person();
     testSecretary + jimmy;
     testSecretary + nikos;
-    testSecretary.dump();
+    // testSecretary.dump();
 
+    // Secretary testSecretary2(testSecretary);
+    // testSecretary2.dump();
+
+    Secretary testSecretary3;
+    testSecretary3 = testSecretary;
+
+    testSecretary3.dump();
     
 
 
