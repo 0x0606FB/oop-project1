@@ -37,9 +37,7 @@ std::ostream& operator<< (std::ostream& stream, const Person p){
 Person::Person(string name_, 
                 string surname_, 
                 string reg_num_, 
-                string email_, int age_) : name(name_), surname(surname_), reg_num(reg_num_), email(email_), age(age_)
-                {   this->count++;
-                    cout << "Constructed" << endl;}
+                string email_, int age_) : name(name_), surname(surname_), reg_num(reg_num_), email(email_), age(age_) { this->count++; }
 
 int Person::count = 0;
 

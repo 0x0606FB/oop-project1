@@ -45,7 +45,7 @@ void        Secretary::add_person(Person *p) {
 }
 
 
-//Find function (???)
+
 // bool        Secretary::find_person(Person& p){
 //     if (std::find(this->personvec.begin(), this->personvec.end(), p) != this->personvec.end()) { return true; }
 //     return false;
@@ -65,10 +65,22 @@ Secretary::~Secretary() {
 Secretary::Secretary(const Secretary &secr){
 
 
-    for(int i = 0; i < secr.personvec.size(); i++){
-        this->personvec.push_back(secr.personvec.at(i));
+    for (Person *p : secr.personvec) { 
+        Person *p1 = new Person;
+        p1->set_name(p->get_name());
+        p1->set_surname(p->get_surname());
+        p1->set_email(p->get_email());
+        p1->set_regnum(p->get_regnum());
+        p1->set_age(p->get_age());
+
+        this->personvec.push_back(p1);
     }
-    cout << "Custom copy constructor" << endl;
+
+
+    // for(int i = 0; i < secr.personvec.size(); i++){ 
+    //     this->personvec.push_back(secr.personvec.at(i));
+    // }
+    cout << "Custom copy constructor" << '\n';
 
 }
 
