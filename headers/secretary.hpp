@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ostream>
 #include <vector>
 #include "./person.hpp"
 
@@ -16,11 +15,14 @@ class Secretary {
         
     public:
         
-        void add_person(Person&);
+        void add_person();
+        void add_person(Person*);
 
-        bool find_person(Person);
+        void dump();
+
+        bool find_person(Person&);
         
-        Secretary operator+ (Person);
+        Secretary operator+ (Person*);
 
         Secretary();
         

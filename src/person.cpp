@@ -27,7 +27,8 @@ std::ostream& operator<< (std::ostream& stream, const Person p){
            << "Surname:               " << p.get_surname()    << endl
            << "Registration Number:   " << p.get_regnum()     << endl
            << "Email:                 " << p.get_email()      << endl
-           << "Age:                   " << p.get_age()        << endl;
+           << "Age:                   " << p.get_age()        << endl
+           << "____________________   " <<                       endl;
 
     return stream;
 }
