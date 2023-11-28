@@ -1,7 +1,6 @@
 #include "./../headers/person.hpp"
 #include <iostream>
 
-using std::cout;
 using std::endl;
 using std::string;
 

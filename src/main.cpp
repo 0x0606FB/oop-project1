@@ -2,7 +2,6 @@
 #include <iostream>
 
 using std::cout;
-using std::cin;
 using std::endl;
 
 int main() {
@@ -12,21 +11,21 @@ int main() {
     
     Secretary testSecretary;
 
-    // cout << "# of people created so far:  " << Person::get_total_counter() << endl;
-    // // cout << "Adding 3 test entities    :  " << endl;
+    
+    cout << "Added 2 test entities. Please fill out the information to add another person manually." << endl;
 
     testSecretary + john;
     testSecretary + jane;
-    // // testSecretary.add_person();
-    cout << Person::get_total_counter() << endl; // 2
-
+    testSecretary.add_person();
+    
+    cout << "# of people created so far:  " << Person::get_total_counter() << endl;
     
     cout << "Contents of testSecretary :  " << endl; 
     testSecretary.dump();
-    cout << Person::get_total_counter() << endl; //0?
 
     Secretary copySecretary(testSecretary);
     cout << "Copied contents of testSecretary into copySecretary" << endl;
+    cout << "Contents of copySecretary :  " << endl; 
     copySecretary.dump();
 
     cout << "Searching for person with registry number = 0000001:" << endl;
