@@ -12,21 +12,31 @@ int main() {
     
     Secretary testSecretary;
 
+    // cout << "# of people created so far:  " << Person::get_total_counter() << endl;
+    // // cout << "Adding 3 test entities    :  " << endl;
+
     testSecretary + john;
     testSecretary + jane;
+    // // testSecretary.add_person();
+    cout << Person::get_total_counter() << endl; // 2
+
+    
+    cout << "Contents of testSecretary :  " << endl; 
     testSecretary.dump();
+    cout << Person::get_total_counter() << endl; //0?
 
-    cout << testSecretary.find_person() << endl;
-    cout << testSecretary.find_person(0000003);
+    Secretary copySecretary(testSecretary);
+    cout << "Copied contents of testSecretary into copySecretary" << endl;
+    copySecretary.dump();
 
-    // Secretary copySecretary(testSecretary);
+    cout << "Searching for person with registry number = 0000001:" << endl;
+    cout << testSecretary.find_person(0000001);
+    cout << "Try searching for a person with a registry number:"   << endl;
+    cout << testSecretary.find_person();
 
-
-    // copySecretary.dump();
-   
-
-
-
-
+    cout << Person::get_total_counter() << endl;
+    
+    
+    return 0;
 
 }

@@ -70,13 +70,12 @@ string        Secretary::find_person(const int r) {
 
 //Dumps all entries of the secretary vector via iterator.
 void        Secretary::dump() const{
-    for (auto p : this->personvec) { cout << *p; }
+    for (const auto p : this->personvec) { cout << *p; }
 }
 
 //Constructor and destructor.
 Secretary::Secretary() {}   
-Secretary::~Secretary() {
-}
+Secretary::~Secretary() { for (auto & p : this->personvec) {delete p;} }
 
 //Copy constructor.
 Secretary::Secretary(const Secretary &secr){
@@ -102,10 +101,10 @@ Secretary Secretary::operator+(Person *p) {
     return *this;
 }
 
-// //Overloading function for the "=" operator.
-// Secretary Secretary::operator=(Secretary secr) {
-//     Secretary secretarycreated(secr);
-//     return secretarycreated;
-// }
+//Overloading function for the "=" operator.
+Secretary Secretary::operator=(const Secretary &secr) {
+    Secretary secretarycreated(secr);
+    return secretarycreated;
+}
 
 

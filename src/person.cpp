@@ -21,7 +21,7 @@ void    Person::set_email(string new_email)     { Person::email = new_email; }
 void    Person::set_age(int new_age)            { age = new_age; }
 
 //Overloading the "<<" operator
-std::ostream& operator<< (std::ostream& stream, const Person p){
+std::ostream& operator<< (std::ostream& stream, const Person &p){
 
     stream << "Name:                  " << p.get_name()       << endl 
            << "Surname:               " << p.get_surname()    << endl
@@ -37,8 +37,8 @@ std::ostream& operator<< (std::ostream& stream, const Person p){
 Person::Person(string name_, 
                 string surname_, 
                 int    reg_num_, 
-                string email_, int age_) : name(name_), surname(surname_), reg_num(reg_num_), email(email_), age(age_) { this->count++; }
+                string email_, int age_) : name(name_), surname(surname_), reg_num(reg_num_), email(email_), age(age_) { this->count++;}
 
 int Person::count = 0;
 
-Person::~Person(){};
+Person::~Person(){this->count--;}

@@ -28,7 +28,9 @@ class Secretary {
 
 
         Secretary();
-        
+
+        Secretary operator=(const Secretary&);
+
         Secretary(const Secretary &secr);
 
         ~Secretary();
