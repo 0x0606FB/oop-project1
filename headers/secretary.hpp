@@ -15,12 +15,13 @@ class Secretary {
         
     public:
         
-        void add_person();
-        void add_person(Person*);
+        void   add_person();
+        void   add_person(Person*);
 
-        void dump() const;
+        void   dump() const;
 
-        bool find_person(Person&);
+        string find_person(void);
+        string find_person(const int);
         
         Secretary operator+ (Person*);
         // Secretary operator= (Secretary);

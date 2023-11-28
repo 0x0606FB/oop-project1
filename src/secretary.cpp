@@ -23,8 +23,8 @@ void        Secretary::add_person() {
     buffer.clear();
     
     cout << "Enter registry number: " << endl;
-    cin >> buffer;
-    p->set_regnum(buffer);
+    cin >> age;
+    p->set_regnum(age);
     buffer.clear();
     
     cout << "Enter email: " << endl;
@@ -40,16 +40,33 @@ void        Secretary::add_person() {
 }
 
 //Oveload function to simply push back a pointer to an already created person.
-void        Secretary::add_person(Person *p) {
-    this->personvec.push_back(p);
+void          Secretary::add_person(Person *p) { this->personvec.push_back(p); }
+
+//Find person function based on registry number.
+string        Secretary::find_person(void) {
+    cout << "Please give register number:" << endl;
+    int r;
+    cin >> r;
+    for (auto & p : this->personvec) {
+        
+        if (p->get_regnum() == r) {
+            return "Person exists.\n";
+        }
+    }
+    return "Person does not exist.\n";
+
+} 
+
+//Overload of above function to be called with the reg number as parameter.
+string        Secretary::find_person(const int r) {
+    for (auto & p : this->personvec) {
+        
+        if (p->get_regnum() == r) {
+            return "Person exists.\n";
+        }
+    }
+    return "Person does not exist.\n";
 }
-
-
-
-// bool        Secretary::find_person(Person& p){
-//     if (std::find(this->personvec.begin(), this->personvec.end(), p) != this->personvec.end()) { return true; }
-//     return false;
-// }
 
 //Dumps all entries of the secretary vector via iterator.
 void        Secretary::dump() const{
@@ -75,12 +92,6 @@ Secretary::Secretary(const Secretary &secr){
 
         this->personvec.push_back(p1);
     }
-
-
-    // for(int i = 0; i < secr.personvec.size(); i++){ 
-    //     this->personvec.push_back(secr.personvec.at(i));
-    // }
-    cout << "Custom copy constructor" << '\n';
 
 }
 
