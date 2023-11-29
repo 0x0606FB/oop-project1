@@ -30,10 +30,10 @@ int main() {
 
     cout << "Searching for person with registry number = 0000001:" << endl;
     cout << testSecretary.find_person(0000001);
-    cout << "Try searching for a person with a registry number:"   << endl;
+    cout << "Try searching for a person with a registry number (integer):"   << endl;
     cout << testSecretary.find_person();
 
-    cout << Person::get_total_counter() << endl;
+    // cout << Person::get_total_counter() << endl;
     
     
     return 0;

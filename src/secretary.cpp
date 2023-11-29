@@ -6,11 +6,12 @@ using std::cout;
 using std::cin;
 using std::string;
 
+
 //Basic add person function.
 void        Secretary::add_person() {
     Person *p = new Person();
     string buffer;
-    int age;
+    int reg_num, age;
 
     cout << "Enter name: " << endl;
     cin >> buffer;
@@ -23,9 +24,8 @@ void        Secretary::add_person() {
     buffer.clear();
     
     cout << "Enter registry number: " << endl;
-    cin >> age;
-    p->set_regnum(age);
-    buffer.clear();
+    cin >> reg_num;
+    p->set_regnum(reg_num);
     
     cout << "Enter email: " << endl;
     cin >> buffer;
@@ -39,8 +39,10 @@ void        Secretary::add_person() {
     this->personvec.push_back(p);
 }
 
+
 //Oveload function to simply push back a pointer to an already created person.
 void          Secretary::add_person(Person *p) { this->personvec.push_back(p); }
+
 
 //Find person function based on registry number.
 string        Secretary::find_person(void) {
@@ -48,14 +50,14 @@ string        Secretary::find_person(void) {
     int r;
     cin >> r;
     for (auto & p : this->personvec) {
-        
+
         if (p->get_regnum() == r) {
             return "Person exists.\n";
-        }
+        } 
     }
     return "Person does not exist.\n";
-
 } 
+
 
 //Overload of above function to be called with the reg number as parameter.
 string        Secretary::find_person(const int r) {
@@ -68,18 +70,20 @@ string        Secretary::find_person(const int r) {
     return "Person does not exist.\n";
 }
 
+
 //Dumps all entries of the secretary vector via iterator.
 void        Secretary::dump() const{
     for (const auto p : this->personvec) { cout << *p; }
 }
 
+
 //Constructor and destructor.
 Secretary::Secretary() {}   
 Secretary::~Secretary() { for (auto & p : this->personvec) {delete p;} }
 
+
 //Copy constructor.
 Secretary::Secretary(const Secretary &secr){
-
 
     for (Person *p : secr.personvec) { 
         Person *p1 = new Person;
@@ -100,6 +104,7 @@ Secretary Secretary::operator+(Person *p) {
     this->add_person(p);
     return *this;
 }
+
 
 //Overloading function for the "=" operator.
 Secretary Secretary::operator=(const Secretary &secr) {

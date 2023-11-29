@@ -24,8 +24,6 @@ class Secretary {
         string find_person(const int);
         
         Secretary operator+ (Person*);
-        // Secretary operator= (Secretary);
-
 
         Secretary();
 

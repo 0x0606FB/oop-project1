@@ -16,7 +16,7 @@ class Person{
     private:
         static int count;        
         string name, surname, email;
-        int age, reg_num;
+        int reg_num, age;
 
     public:
         
