@@ -21,6 +21,8 @@ void    Person::set_regnum(int new_regnum)      { Person::reg_num = new_regnum; 
 void    Person::set_email(string new_email)     { Person::email = new_email; }
 void    Person::set_age(int new_age)            { age = new_age; }
 
+void    Person::decrease_count()                { Person::count--;}
+
 
 //Overloading the "<<" operator
 std::ostream& operator<< (std::ostream& stream, const Person &p){

@@ -22,8 +22,8 @@ int main() {
     
     cout << "Contents of testSecretary :  " << endl; 
     testSecretary.dump();
-
-    Secretary copySecretary(testSecretary);
+    
+    Secretary copySecretary = testSecretary;
     cout << "Copied contents of testSecretary into copySecretary" << endl;
     cout << "Contents of copySecretary :  " << endl; 
     copySecretary.dump();
@@ -33,9 +33,7 @@ int main() {
     cout << "Try searching for a person with a registry number (integer):"   << endl;
     cout << testSecretary.find_person();
 
-    // cout << Person::get_total_counter() << endl;
-    
+    cout << "# of people created so far:  " << Person::get_total_counter() << endl;
     
     return 0;
-
 }

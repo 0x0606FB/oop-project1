@@ -23,7 +23,7 @@ class Secretary {
         string find_person(void);
         string find_person(const int);
         
-        Secretary operator+ (Person*);
+        Secretary& operator+ (Person*);
 
         Secretary();
 

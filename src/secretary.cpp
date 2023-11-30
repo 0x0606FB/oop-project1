@@ -85,8 +85,11 @@ Secretary::~Secretary() { for (auto & p : this->personvec) {delete p;} }
 //Copy constructor.
 Secretary::Secretary(const Secretary &secr){
 
+    cout << "Copy" << endl;
     for (Person *p : secr.personvec) { 
         Person *p1 = new Person;
+        
+        Person::decrease_count();
         p1->set_name(p->get_name());
         p1->set_surname(p->get_surname());
         p1->set_email(p->get_email());
@@ -100,7 +103,7 @@ Secretary::Secretary(const Secretary &secr){
 
 
 //Overloading function for the "+" operator.
-Secretary Secretary::operator+(Person *p) {
+Secretary& Secretary::operator+(Person *p) {
     this->add_person(p);
     return *this;
 }

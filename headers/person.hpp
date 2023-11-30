@@ -36,6 +36,7 @@ class Person{
         void        set_age(int);
         
         static int  get_total_counter();
+        static void decrease_count();
 
         friend      std::ostream& operator<< (std::ostream&, const Person &);  
 
