@@ -23,7 +23,7 @@ void    Person::set_age(int new_age)            { age = new_age; }
 
 void    Person::decrease_count()                { Person::count--;}
 
-
+    
 //Overloading the "<<" operator
 std::ostream& operator<< (std::ostream& stream, const Person &p){
 

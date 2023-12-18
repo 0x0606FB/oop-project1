@@ -1,3 +1,6 @@
+#ifndef __PERSON_HPP_DEFINED__
+#define __PERSON_HPP_DEFINED__
+
 #include <iostream>
 #include <ostream>
 #include <string>
@@ -53,3 +56,5 @@ class Person{
         
                 
 };
+
+#endif

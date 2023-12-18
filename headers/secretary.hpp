@@ -1,3 +1,6 @@
+#ifndef __SECRETARY_HPP_INCLUDED__
+#define __SECRETARY_HPP_INCLUDED__
+
 #include <iostream>
 #include <vector>
 #include "./person.hpp"
@@ -33,3 +36,5 @@ class Secretary {
 
         ~Secretary();
 };
+
+#endif
