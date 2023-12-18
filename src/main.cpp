@@ -18,13 +18,13 @@ int main() {
     testSecretary + jane;
     testSecretary.add_person();
     
-    cout << "# of people created so far:  " << Person::get_total_counter() << endl;
+    cout << "# of people created so far:  " << Person::get_total_counter() << endl << endl;
     
     cout << "Contents of testSecretary :  " << endl; 
     testSecretary.dump();
     
     Secretary copySecretary = testSecretary;
-    cout << "Copied contents of testSecretary into copySecretary" << endl;
+    cout << endl << "Copied contents of testSecretary into copySecretary" << endl << endl;
     cout << "Contents of copySecretary :  " << endl; 
     copySecretary.dump();
 

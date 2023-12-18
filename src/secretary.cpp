@@ -46,7 +46,7 @@ void          Secretary::add_person(Person *p) { this->personvec.push_back(p); }
 
 //Find person function based on registry number.
 string        Secretary::find_person(void) {
-    cout << "Please give register number:" << endl;
+    cout << "Please give registry number (integer):" << endl;
     int r;
     cin >> r;
     for (auto & p : this->personvec) {
@@ -85,7 +85,6 @@ Secretary::~Secretary() { for (auto & p : this->personvec) {delete p;} }
 //Copy constructor.
 Secretary::Secretary(const Secretary &secr){
 
-    cout << "Copy" << endl;
     for (Person *p : secr.personvec) { 
         Person *p1 = new Person;
         
