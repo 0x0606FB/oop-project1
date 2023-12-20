@@ -21,11 +21,19 @@ class   Course {
 
     public:
 
-        void                change_semester(int);
-        void                change_name(string);
-        void                change_ects(int);
-        void                change_serialno(string);
-        void                change_mandatory(bool);
+        
+        int                 get_semester();
+        string              get_name();
+        int                 get_ects();
+        string              get_serialno();
+        bool                get_mandatory();
+
+
+        void                set_semester(int);
+        void                set_name(string);
+        void                set_ects(int);
+        void                set_serialno(string);
+        void                set_mandatory(bool);
 
         Course(string name= NO_NAME, string serialno= NO_SERIAL,
                 int ects= NO_ECTS, int semester= NO_SEMESTER, bool mandatory= NO_MANDATORY);

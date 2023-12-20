@@ -9,8 +9,8 @@ using std::vector;
 
 typedef struct {
 
-    Course *course;
-    int     grade;
+    Course   *course;
+    float     grade;
 
 } grade_per_student;
 
@@ -26,6 +26,10 @@ class Student : public Person {
         void        change_semester(int);
         void        change_ects(int);
 
+        int         compute_ects();
+        bool        completed_mandatories();
+        void        get_grades();
+        void        update_ects();
         bool        can_graduate();
         
 
