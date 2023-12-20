@@ -2,13 +2,18 @@
 #define __PROFESSOR_HPP_INCLUDED__
 
 #include "./person.hpp"
+#include "./course.hpp"
 
-class   Professor {
+class   Professor : public Person {
+
+    private:
+        
+
+
 
     public:
 
 
-    private:
 
 
 };
