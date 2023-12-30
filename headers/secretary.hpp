@@ -4,6 +4,10 @@
 #include <iostream>
 #include <vector>
 #include "./person.hpp"
+#include "./student.hpp"
+#include "./professor.hpp"
+#include "course.hpp"
+
 
 using std::cin;
 using std::cout;
@@ -13,7 +17,9 @@ using std::vector;
 class Secretary {
 
     private:
-        vector<Person *> personvec;
+        vector<Student *>   studentvec;
+        vector<Professor *> professorvec;
+        vector<Course *>    coursevec;
         
         
     public:
@@ -25,6 +31,8 @@ class Secretary {
 
         string find_person(void);
         string find_person(const int);
+
+        friend bool Student::completed_mandatories();
         
         Secretary& operator+ (Person*);
 

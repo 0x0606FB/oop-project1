@@ -1,4 +1,5 @@
 #include "./../headers/student.hpp"
+#include "./../headers/secretary.hpp"
 
 #define     GRADECTS 240
 
@@ -19,7 +20,9 @@ void    Student::update_ects()                       {
         this->ects = ects;
 }
 
-bool    Student::completed_mandatories(void)         {return true;}
+bool    Student::completed_mandatories(void)         {
+    
+}
 
 void    Student::get_grades()                        {
             for (auto & g : this->grades) {
