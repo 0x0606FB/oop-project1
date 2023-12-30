@@ -24,13 +24,12 @@ class Secretary {
         
     public:
         
-        void   add_person();
-        void   add_person(Person*);
+        template <typename T> void   add_person();
 
         void   dump() const;
 
-        string find_person(void);
-        string find_person(const int);
+        template <typename T> string find_person();
+        // string find_person(const int);
 
         friend bool Student::completed_mandatories();
         

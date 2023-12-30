@@ -1,7 +1,8 @@
 #include "./../headers/student.hpp"
 #include "./../headers/secretary.hpp"
 
-#define     GRADECTS 240
+#define     GRADECTS    240
+#define     MSEMESTER   8
 
 using std::cout;
 using std::cin;
@@ -21,7 +22,7 @@ void    Student::update_ects()                       {
 }
 
 bool    Student::completed_mandatories(void)         {
-    
+     
 }
 
 void    Student::get_grades()                        {
@@ -32,7 +33,7 @@ void    Student::get_grades()                        {
             }
 }   
 
-bool    Student::can_graduate()                      {return (this->semester > 8 && this->ects >= GRADECTS && this->completed_mandatories());}
+bool    Student::can_graduate()                      {return (this->semester > MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
 
 
 

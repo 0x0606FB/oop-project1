@@ -1,4 +1,5 @@
 #include "./../headers/secretary.hpp"
+#include <typeinfo>
 #include <algorithm>
 #include <iterator>
 
@@ -8,8 +9,9 @@ using std::string;
 
 
 //Basic add person function.
+template <typename T>
 void        Secretary::add_person() {
-    Person *p = new Person();
+    T *p = new T();
     string buffer;
     int reg_num, age;
 
@@ -36,20 +38,33 @@ void        Secretary::add_person() {
     cin >> age;
     p->set_age(age);
 
-    this->personvec.push_back(p);
+    if (typeid(T) == typeid(Student)) { 
+        this->studentvec.push_back(p);
+    } else {
+        this->coursevec.push_back(p);
+    }
+
 }
 
 
-//Oveload function to simply push back a pointer to an already created person.
-void          Secretary::add_person(Person *p) { this->personvec.push_back(p); }
 
 
 //Find person function based on registry number.
-string        Secretary::find_person(void) {
+template <typename T>
+string        Secretary::find_person() {
     cout << "Please give registry number (integer):" << endl;
     int r;
     cin >> r;
-    for (auto & p : this->personvec) {
+
+    
+
+    if (typeid(T) == typeid(Student)){
+        auto this_ = this->studentvec;
+    } else {
+        auto this_ = this->professorvec;
+    }
+
+    for (auto & p : this_) {
 
         if (p->get_regnum() == r) {
             return "Person exists.\n";
