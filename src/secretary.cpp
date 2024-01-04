@@ -56,45 +56,49 @@ string        Secretary::find_person() {
     int r;
     cin >> r;
 
-    
 
+    
+    auto this_ = this->professorvec;
+    
     if (typeid(T) == typeid(Student)){
-        auto this_ = this->studentvec;
-    } else {
-        auto this_ = this->professorvec;
+        for (auto & p : this->studentvec) {
+
+            if (p->get_regnum() == r) {
+                return "Person exists.\n";
+            } 
+        }
+        return "Person does not exist.\n";        
     }
 
-    for (auto & p : this_) {
+    for (auto & p : this->professorvec) {
 
         if (p->get_regnum() == r) {
             return "Person exists.\n";
         } 
     }
     return "Person does not exist.\n";
+
 } 
 
 
-//Overload of above function to be called with the reg number as parameter.
-string        Secretary::find_person(const int r) {
-    for (auto & p : this->personvec) {
-        
-        if (p->get_regnum() == r) {
-            return "Person exists.\n";
-        }
-    }
-    return "Person does not exist.\n";
-}
 
 
 //Dumps all entries of the secretary vector via iterator.
+template <typename T>
 void        Secretary::dump() const{
-    for (const auto p : this->personvec) { cout << *p; }
+    if (typeid(T) == typeid(Student)){
+        for (const auto p : this->studentvec) { cout << *p; }
+    } else {
+        for (const auto p : this->professorvec) { cout << *p; }
+    }
 }
 
 
 //Constructor and destructor.
 Secretary::Secretary() {}   
-Secretary::~Secretary() { for (auto & p : this->personvec) {delete p;} }
+Secretary::~Secretary() {   for (auto & p : this->studentvec) {delete p;}
+                            for (auto & p : this->professorvec) {delete p;}
+                            for (auto & p : this->coursevec) {delete p;}}
 
 
 //Copy constructor.

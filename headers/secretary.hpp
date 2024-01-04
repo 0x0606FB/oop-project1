@@ -26,7 +26,7 @@ class Secretary {
         
         template <typename T> void   add_person();
 
-        void   dump() const;
+        template <typename T> void   dump() const;
 
         template <typename T> string find_person();
         // string find_person(const int);

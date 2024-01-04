@@ -1,4 +1,5 @@
-#include <iostream>
+    #include <iostream>
+
 using std::string;
 using std::cin;
 using std::cout;
@@ -7,6 +8,9 @@ using std::endl;
 
 
 void menu(){
+
+    // exception handling 
+    
     cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 4 for extra options" << endl;
     int userInput1;
     cin >> userInput1;
