@@ -1,92 +1,168 @@
-    #include <iostream>
+#include <exception>
+#include <iostream>
+#include <string>
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
 
-
+bool continueop(void) {
+    
+    cout << "Do you want to continue with the operation? (Y/N)" << endl;
+    string input;
+    cin >> input; 
+    if (!input.compare("y") || !input.compare("Y")) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 void menu(){
 
-    // exception handling 
+    while (1) {
+        string userInput1;
+        bool check = false;
+    while (!check) {
+        try {
+            cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 0 to quit menu" << endl;         
+            cin >> userInput1;
+        if (userInput1.compare("1") && userInput1.compare("2") && userInput1.compare("3") && userInput1.compare("0")) {
+            throw "False Value.\n";
+        } else if (!userInput1.compare("0")){
+            throw 0;
+        }
+        check = true;
+    } 
+    catch (const char s[]) {
+        cout << s;
+    } catch (const int quit) {
+            cout << "Are you sure you want to quit? (Y/N)" << endl;
+            cin >> userInput1;
+            if (!userInput1.compare("y") || !userInput1.compare("Y")) {
+                return;
+            }
+    } 
     
-    cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 4 for extra options" << endl;
-    int userInput1;
-    cin >> userInput1;
+    
+    }
+    
+    if (!userInput1.compare("1")){
 
-    if (userInput1 == 1){
+        check = false;
+        userInput1.clear();
+        
+        while (!check) {
+        try {
+            cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'stats' (case sensitive)" << endl;
+            cin >> userInput1;
+            if (userInput1.compare("add") && userInput1.compare("change")
+                && userInput1.compare("remove") && userInput1.compare("stats")) {
+                throw "False Expression.\n";
+            }
+            check = true;
+        } catch (const char s[]) {
+            cout << s;
+        }
+        }     
 
-        string userInputProf;
-        cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove' (case sensitive)" << endl;
-        cin >> userInputProf;
 
-        if(userInputProf.compare("add") == 0){
+        if(!userInput1.compare("add")){
             cout << "// ADD PROFESSOR TO UNIVERSITY ///////" << endl;
         }
-        else if (userInputProf.compare("change") == 0){
+        else if (!userInput1.compare("change")){
             cout << "// CHANGE PROFESSOR DATA ///////" << endl;
         }
-        else if (userInputProf.compare("remove") == 0){
+        else if (!userInput1.compare("remove")){
            cout << "// REMOVE PROFESSOR  ///////" << endl;
         }
-        else{
-            cout << "Wrong input" << endl;
+        else {
+            cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////" << endl;
         }
-
 
     }
 
-    else if (userInput1 == 2){
-        string userInputStud;
-        cout << "STUDENT OPTIONS: Enter 'add', 'change' or 'remove' (case sensitive)" << endl;
-        cin >> userInputStud;
+    else if (!userInput1.compare("2")){
+        
+        check = false;
+        userInput1.clear();
 
-        if(userInputStud.compare("add") == 0){
+        while (!check) {
+        try {
+            cout << "STUDENT OPTIONS: Enter 'add', 'change', 'remove', 'register', 'stats', 'graduate' (case sensitive)" << endl;
+            cin >> userInput1;
+            if (userInput1.compare("add") && userInput1.compare("change") 
+                && userInput1.compare("remove") && userInput1.compare("register")
+                && userInput1.compare("graduate")) {
+                throw "False Expression.\n";
+            }
+            check = true;
+        } catch (const char s[]) {
+            cout << s;
+        }
+        }
+
+
+        if(!userInput1.compare("add")){
             cout << "// ADD STUDENT TO UNIVERSITY ///////" << endl;
         }
-        else if (userInputStud.compare("change") == 0){
+        else if (!userInput1.compare("change")){
             cout << "// CHANGE STUDENT DATA ///////" << endl;
         }
-        else if (userInputStud.compare("remove") == 0){
+        else if (!userInput1.compare("remove")){
            cout << "// REMOVE STUDENT  ///////" << endl;
         }
-        else{
-            cout << "Wrong input" << endl;
+        else if (!userInput1.compare("register")) {
+            cout << "// REGISTER STUDENT TO COURSE ///////" << endl;
+        }
+        else if (!userInput1.compare("stats")) {
+            cout << "// PRINT A STUDENTS' STATS ///////" << endl;
+        }
+        else if (!userInput1.compare("graduate")){
+            cout << "PRINT LIST OF STUDENTS WHO CAN GRADUATE ///////" << endl;
         }
     }
 
-    else if (userInput1 == 3){
-        string userInputCour;
-        cout << "COURSE OPTIONS: Enter 'add', 'change' or 'remove' (case sensitive)" << endl;
-        cin >> userInputCour;
+    else if (!userInput1.compare("3")){
+        
+        
+        check = false;
+        userInput1.clear();
+        
+        while (!check) {
+        try {
+            cout << "COURSE OPTIONS: Enter 'add', 'change' or 'remove', 'assign', 'export' (case sensitive)" << endl;
+            cin >> userInput1;
+            if (userInput1.compare("add") && userInput1.compare("change")
+                && userInput1.compare("remove") && userInput1.compare("assign")
+                && userInput1.compare("export")) {
+                throw "False Expression.\n";
+            }
+            check = true;
+        } catch (const char s[]) {
+            cout << s;
+        }
+        }     
 
-        if(userInputCour.compare("add") == 0){
+
+    
+
+        if(!userInput1.compare("add")){
             cout << "// ADD COURSE TO UNIVERSITY ///////" << endl;
         }
-        else if (userInputCour.compare("change") == 0){
+        else if (!userInput1.compare("change")){
             cout << "// CHANGE COURSE DATA ///////" << endl;
         }
-        else if (userInputCour.compare("remove") == 0){
+        else if (!userInput1.compare("remove")){
            cout << "// REMOVE COURSE  ///////" << endl;
         }
-        else{
-            cout << "Wrong input" << endl;
+        else if (!userInput1.compare("assign")){
+           cout << "// ASSIGN PROFESSOR TO COURSE  ///////" << endl;
         }
-
-    }
-    else if(userInput1 == 4){
-        cout << 
-        "EXTRA OPTIONS: Press 1 to assign Professor to Course, 2 to sign up Student for Class, 3 to show passing Students of a Course" <<
-        ", 4 to print Professor's Course stats, 5 to print Student's grades, 6 to print graduation-eligible Students" << endl;
-
-
-
-
-
-    }
-    else{
-        cout << "Wrong input" << endl;
-    }
-
+        else if (!userInput1.compare("export")){
+           cout << "// EXPORT A LIST OF STUDENTS WHO HAVE COMPLETED A COURSE  ///////" << endl;
+        }
+    } 
+}
 }

@@ -43,9 +43,17 @@ void        Secretary::add_person() {
     } else {
         this->coursevec.push_back(p);
     }
-
 }
 
+void        Secretary::add_course(void){
+
+    Course *c = new Course();
+    string buffer;
+
+
+
+
+}
 
 
 
@@ -55,10 +63,6 @@ string        Secretary::find_person() {
     cout << "Please give registry number (integer):" << endl;
     int r;
     cin >> r;
-
-
-    
-    auto this_ = this->professorvec;
     
     if (typeid(T) == typeid(Student)){
         for (auto & p : this->studentvec) {
