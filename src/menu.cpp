@@ -195,7 +195,7 @@ void menu(){
                 cout << "// CHANGE COURSE NAME //////" << endl;             /////////////////////////////////
             }
             if (!userInput1.compare("serialno")){
-                cout << "// CHANGE COURSE serialno //////" << endl;         /////////////////////////////////
+                cout << "// CHANGE COURSE SERIALNO //////" << endl;         /////////////////////////////////
             }
             if (!userInput1.compare("ects")){
                 cout << "// CHANGE COURSE ECTS //////" << endl;             /////////////////////////////////
