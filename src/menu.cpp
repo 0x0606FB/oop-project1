@@ -108,7 +108,30 @@ void menu(){
             cout << "// ADD STUDENT TO UNIVERSITY ///////" << endl;
         }
         else if (!userInput1.compare("change")){
-            cout << "// CHANGE STUDENT DATA ///////" << endl;
+            check = false;
+            userInput1.clear();
+
+            while (!check) {
+            try {
+                cout << "CHANGE STUDENT DETAILS: Enter 'semester', 'ects', 'passed' (case sensitive)" << endl;
+                cin >> userInput1;
+                if (userInput1.compare("semester") && userInput1.compare("ects") && userInput1.compare("passed")) {
+                    throw "False Expression.\n";
+                }
+                check = true;
+            } catch (const char s[]) {
+                cout << s;
+            }
+            }
+            if (!userInput1.compare("semester")){
+                cout << "// CHANGE STUDENT SEMESTER //////" << endl; ////////////////////////////////////////////
+            }
+            if (!userInput1.compare("ects")){
+                cout << "// CHANGE STUDENT ECTS //////" << endl;     ///////////////////////////////////////////
+            }
+            if (!userInput1.compare("passed")){
+                cout << "// CHANGE STUDENT PASSED STATUS //////" << endl;   ////////////////////////////////////
+            }
         }
         else if (!userInput1.compare("remove")){
            cout << "// REMOVE STUDENT  ///////" << endl;
@@ -152,7 +175,37 @@ void menu(){
             cout << "// ADD COURSE TO UNIVERSITY ///////" << endl;
         }
         else if (!userInput1.compare("change")){
-            cout << "// CHANGE COURSE DATA ///////" << endl;
+            check = false;
+            userInput1.clear();
+
+            while (!check) {
+            try {
+                cout << "CHANGE COURSE DETAILS: Enter 'name', 'serialno', 'ects', 'semester', 'mandatory' (case sensitive)" << endl;
+                cin >> userInput1;
+                if (userInput1.compare("name") && userInput1.compare("serialno") && userInput1.compare("ects") 
+                    && userInput1.compare("semester") && userInput1.compare("mandatory")) {
+                    throw "False Expression.\n";
+                }
+                check = true;
+            } catch (const char s[]) {
+                cout << s;
+            }
+            }
+            if (!userInput1.compare("name")){
+                cout << "// CHANGE COURSE NAME //////" << endl;             /////////////////////////////////
+            }
+            if (!userInput1.compare("serialno")){
+                cout << "// CHANGE COURSE serialno //////" << endl;         /////////////////////////////////
+            }
+            if (!userInput1.compare("ects")){
+                cout << "// CHANGE COURSE ECTS //////" << endl;             /////////////////////////////////
+            }
+            if (!userInput1.compare("semester")){
+                cout << "// CHANGE COURSE PASSED SEMESTER //////" << endl;  /////////////////////////////////
+            }
+            if (!userInput1.compare("mandatory")){
+                cout << "// CHANGE COURSE MANDATORY STATUS //////" << endl; /////////////////////////////////
+            }
         }
         else if (!userInput1.compare("remove")){
            cout << "// REMOVE COURSE  ///////" << endl;
