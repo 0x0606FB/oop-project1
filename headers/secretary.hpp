@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 #include "./person.hpp"
 #include "./student.hpp"
 #include "./professor.hpp"
@@ -12,14 +13,16 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::list;
 using std::vector;
 
 class Secretary {
 
     private:
-        vector<Student *>   studentvec;
-        vector<Professor *> professorvec;
-        vector<Course *>    coursevec;
+        list<Student *>   studentlist;
+        list<Professor *> professorlist;
+        list<Course *>    courselist;
+        int               mandatoryno;
         
         
     public:
@@ -30,7 +33,11 @@ class Secretary {
 
         template <typename T> void   dump() const;
 
-        template <typename T> string find_person();
+        template <typename T> T*     find(string);
+
+        void                         update_mandatoryno();
+
+        static int                          get_mandatoryno();                        
         // string find_person(const int);
 
         friend bool Student::completed_mandatories();

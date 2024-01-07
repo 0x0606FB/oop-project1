@@ -9,15 +9,15 @@ using std::string;
 string  Person::get_name()       const { return name; } 
 string  Person::get_surname()    const { return surname; } 
 string  Person::get_email()      const { return email; } 
-int     Person::get_regnum()     const { return reg_num; } 
+string  Person::get_regnum()     const { return reg_num; } 
 int     Person::get_age()        const { return age; }
-int     Person::get_total_counter() { return count; } 
+int     Person::get_total_counter()    { return count; } 
 
 
 //Mutator functions for the Person class
 void    Person::set_name(string new_name)       { Person::name = new_name; }
 void    Person::set_surname(string new_surname) { Person::surname = new_surname; }
-void    Person::set_regnum(int new_regnum)      { Person::reg_num = new_regnum; }
+void    Person::set_regnum(string new_regnum)   { Person::reg_num = new_regnum; }
 void    Person::set_email(string new_email)     { Person::email = new_email; }
 void    Person::set_age(int new_age)            { age = new_age; }
 
@@ -41,7 +41,7 @@ std::ostream& operator<< (std::ostream& stream, const Person &p){
 //Defining constructor and destructor 
 Person::Person(string name_, 
                 string surname_, 
-                int    reg_num_, 
+                string    reg_num_, 
                 string email_, int age_) : name(name_), surname(surname_), reg_num(reg_num_), email(email_), age(age_) { this->count++;}
 
 int Person::count = 0;

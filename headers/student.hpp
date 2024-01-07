@@ -23,14 +23,16 @@ class Student : public Person {
 
     public:
 
-        void        change_semester(int);
-        void        change_ects(int);
+        void        set_semester(int);
+        void        set_ects(int);
+        void        set_passed(bool);
 
         int         compute_ects();
         bool        completed_mandatories();
-        void        get_grades();
+        void        get_grades(bool);
         void        update_ects();
         bool        can_graduate();
+        int         get_semester();
         
 
 

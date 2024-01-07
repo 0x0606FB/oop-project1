@@ -10,7 +10,7 @@ using std::string;
 #define NO_NAME "DEFAULT" 
 #define NO_SUR "DEFAULT"
 #define NO_MAIL "DEFAULT"   
-#define NO_REG 0
+#define NO_REG "DEFAULT"
 #define NO_AGE 0 
 
 
@@ -18,8 +18,8 @@ class Person{
 
     private:
         static int count;        
-        string name, surname, email;
-        int reg_num, age;
+        string name, surname, email, reg_num;
+        int age;
 
     public:
         
@@ -29,8 +29,8 @@ class Person{
         string      get_surname() const;
         void        set_surname(string);
         
-        int         get_regnum() const;
-        void        set_regnum(int);
+        string         get_regnum() const;
+        void           set_regnum(string);
         
         string      get_email() const; 
         void        set_email(string);
@@ -47,7 +47,7 @@ class Person{
 
         Person (string name= NO_NAME, 
                 string surname = NO_SUR, 
-                int    reg_num = NO_REG, 
+                string reg_num = NO_REG, 
                 string email = NO_MAIL,
                 int age = NO_AGE);
 
