@@ -21,7 +21,7 @@ void    Student::update_ects()                       {
         this->ects = ects;
 }
 
-bool    Student::completed_mandatories(void)         {
+bool    Student::completed_mandatories(void)   const      {
     auto counter = 0;
     for (auto & c : this->grades) {
         if (c.course->get_mandatory() == true) {
@@ -34,7 +34,7 @@ bool    Student::completed_mandatories(void)         {
     return false;
 }
 
-void    Student::get_grades(bool all_semesters)                        {
+void    Student::get_grades (bool all_semesters) const                        {
 
     if(all_semesters == false) {
             for (auto & g : this->grades) {
@@ -57,8 +57,16 @@ void    Student::get_grades(bool all_semesters)                        {
 
   
 
-bool    Student::can_graduate()                      {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
+bool    Student::can_graduate() const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
 
+void    Student::enroll(Course *c) {
+
+    grade_per_student g;
+    g.grade = 0;
+    g.course = c;
+    this->grades.push_front(g);
+    
+}
 
 
 

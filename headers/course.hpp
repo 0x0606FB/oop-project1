@@ -16,7 +16,7 @@ class   Course {
 
     private:
         string              name, serialno;
-        int                 ects, semester;
+        int                 ects, semester, enrolled;
         bool                mandatory;
 
     public:
@@ -27,8 +27,9 @@ class   Course {
         int                 get_ects();
         string              get_serialno();
         bool                get_mandatory();
+        int                 get_enrolled();
 
-
+        void                set_enrolled(int);
         void                set_semester(int);
         void                set_name(string);
         void                set_ects(int);

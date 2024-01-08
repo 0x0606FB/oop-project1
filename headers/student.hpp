@@ -4,8 +4,10 @@
 #include "./person.hpp"
 #include "./course.hpp"
 #include <vector>
+#include <list>
 
 using std::vector;
+using std::list;
 
 typedef struct {
 
@@ -18,7 +20,7 @@ class Student : public Person {
 
     private:
         int     semester, ects;
-        vector<grade_per_student> grades;
+        list<grade_per_student> grades;
         bool    passed;
 
     public:
@@ -28,11 +30,12 @@ class Student : public Person {
         void        set_passed(bool);
 
         int         compute_ects();
-        bool        completed_mandatories();
-        void        get_grades(bool);
+        bool        completed_mandatories() const;
+        void        get_grades(bool) const;
         void        update_ects();
-        bool        can_graduate();
-        int         get_semester();
+        bool        can_graduate() const;
+        int         get_semester() const;
+        void        enroll(Course *);
         
 
 

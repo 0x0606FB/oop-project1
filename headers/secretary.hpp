@@ -40,7 +40,7 @@ class Secretary {
         static int                          get_mandatoryno();                        
         // string find_person(const int);
 
-        friend bool Student::completed_mandatories();
+        friend bool Student::completed_mandatories() const;
         
         Secretary& operator+ (Person*);
 

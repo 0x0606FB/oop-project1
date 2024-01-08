@@ -49,27 +49,34 @@ void menu(){
     }
     
     if (!userInput1.compare("1")){
+        
+        
 
         check = false;
         userInput1.clear();
         
         while (!check) {
         try {
-            cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'stats' (case sensitive)" << endl;
+            cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'stats' or 'back' to go back (case sensitive)" << endl;
             cin >> userInput1;
             if (userInput1.compare("add") && userInput1.compare("change")
-                && userInput1.compare("remove") && userInput1.compare("stats")) {
+                && userInput1.compare("remove") && userInput1.compare("stats") && userInput1.compare("back")) {
                 throw "False Expression.\n";
+            } else if (!userInput1.compare("back")){
+                throw 0;
             }
             check = true;
         } catch (const char s[]) {
             cout << s;
+        }  catch (int back) {
+            break;
         }
         }     
 
 
         if(!userInput1.compare("add")){
             cout << "// ADD PROFESSOR TO UNIVERSITY ///////" << endl;
+            if (!continueop()) {goto }
         }
         else if (!userInput1.compare("change")){
             cout << "// CHANGE PROFESSOR DATA ///////" << endl;
@@ -77,7 +84,7 @@ void menu(){
         else if (!userInput1.compare("remove")){
            cout << "// REMOVE PROFESSOR  ///////" << endl;
         }
-        else {
+        else if (!userInput1.compare(("stats"))){
             cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////" << endl;
         }
 
