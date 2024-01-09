@@ -290,9 +290,11 @@ void Secretary::menu() {
 
             while (!check) {
               try {
-                cout << "CHANGE STUDENT DETAILS: Enter 'semester', 'ects', 'passed' (case sensitive)" << endl;
+                cout << "CHANGE STUDENT DETAILS: Enter 'name', 'surname', 'age', 'email', 'registry', 'semester', 'ects', 'passed' (case sensitive)" << endl;
                 cin >> userInput1;
-                if (userInput1.compare("semester") && userInput1.compare("ects") && userInput1.compare("passed")) {
+                if (userInput1.compare("name") && userInput1.compare("surname") && userInput1.compare("age") && 
+                userInput1.compare("email") && userInput1.compare("registry") && 
+                userInput1.compare("semester") && userInput1.compare("ects") && userInput1.compare("passed")) {
                   throw "False Expression.\n";
                 }
                 check = true;
@@ -312,24 +314,61 @@ void Secretary::menu() {
               cout << "-------------------------" << endl;
               cin  >> buffer;
               student->set_name(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("surname")) {
               cout << "// CHANGE STUDENT SURNAME //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Surname:" << student->get_name() << "     Change Surname To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer;
+              student->set_surname(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("age")) {
+              int buffer1;
               cout << "// CHANGE STUDENT AGE //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Age:" << student->get_age() << "     Change Age To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer1;
+              student->set_age(buffer1);
             }
             if (!userInput1.compare("email")) {
               cout << "// CHANGE STUDENT EMAIL //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Email:" << student->get_email() << "     Change Email To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer;
+              student->set_email(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("registry")) {
               cout << "// CHANGE STUDENT REGISTRY NUMBER //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Registry Number:" << student->get_regnum() << "     Change Registry Number To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer;
+              student->set_regnum(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("ects")) {
+              int buffer1;
               cout << "// CHANGE STUDENT ECTS //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current ECTS:" << student->get_ects() << "     Change ECTS To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer1;
+              student->set_ects(buffer1);
             }
             if (!userInput1.compare("passed")) {
               cout << "// CHANGE STUDENT PASSED STATUS //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Passed Status:"    << student->get_name() << "     Change Passed Status To ..... "<< endl;
+              cout << "-------------------------" << endl;
+              cin  >> buffer;
+              student->set_surname(buffer);
+              buffer.clear();
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE STUDENT  ///////" << endl;
