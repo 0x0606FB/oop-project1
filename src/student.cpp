@@ -8,8 +8,9 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-void    Student::set_semester(int new_semester)   { Student::semester = new_semester; }
-void    Student::set_ects(int new_ects)           { Student::ects = new_ects; }
+void    Student::set_semester(int new_semester)         { Student::semester = new_semester; }
+void    Student::set_ects(int new_ects)                 { Student::ects = new_ects; }
+void    Student::set_passed(bool new_passed)            { Student::passed = new_passed; }
 
 void    Student::update_ects()                       {
         float ects = 0;
@@ -34,6 +35,12 @@ bool    Student::completed_mandatories(void)   const      {
     return false;
 }
 
+
+
+int     Student::get_semester() const {return this->semester;}
+
+int     Student::get_ects() const {return this->ects;}
+
 void    Student::get_grades (bool all_semesters) const                        {
 
     if(all_semesters == false) {
@@ -55,7 +62,7 @@ void    Student::get_grades (bool all_semesters) const                        {
             }
     }
 
-  
+
 
 bool    Student::can_graduate() const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
 
@@ -68,7 +75,8 @@ void    Student::enroll(Course *c) {
     
 }
 
-
+Student::Student(int semester_, int ects_, bool passed_) : semester(semester_), ects(ects_), passed(passed_){};
+Student::~Student(){};
 
             // for (auto & g : this->grades) {
             //    cout << g.course->get_name() << ":" << g.course->get_serialno() << endl;

@@ -35,8 +35,15 @@ class Student : public Person {
         void        update_ects();
         bool        can_graduate() const;
         int         get_semester() const;
+        int         get_ects() const;
         void        enroll(Course *);
         
+        Student(int semester= 0, int ects= 0, bool passed= false);
+        ~Student();
+
+
+
+       
 
 
 };

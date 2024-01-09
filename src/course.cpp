@@ -12,3 +12,9 @@ string              Course::get_name()                          {return this->na
 int                 Course::get_ects()                          {return this->ects;}
 string              Course::get_serialno()                      {return this->serialno;}
 bool                Course::get_mandatory()                     {return this->mandatory;}
+
+Course::Course(string name_, string serialno_ ,
+                int ects_ , int semester_ , bool mandatory_ ) : 
+                name(name_), serialno(serialno_), ects(ects_), semester(semester_), mandatory(mandatory_) {};
+
+Course::~Course(){};

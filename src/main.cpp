@@ -1,14 +1,26 @@
 #include "./../headers/secretary.hpp"
-#include <iostream>
+#include <string>
+
+
 
 using std::cout;
 using std::endl;
 
-void menu(void);
+
+
+// void menu(void);
 
 int main() {
 
-    menu();
+    Secretary s;
+
+
+    s.menu();
+
+
+
+
+    return 0;
 
     // Person *john = new Person("John", "Doe",  0000001, "john@mail.com", 20);
     // Person *jane = new Person("Jane", "Smith",0000002, "jane@mail.com", 23);

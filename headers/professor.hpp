@@ -18,9 +18,10 @@ class   Professor : public Person {
 
         void            assign_to_course(Course *);
         void            print_stats(void) const;
-        // void            grade
+        // void         grade
 
-
+        Professor();
+        ~Professor();
 
 };
 
