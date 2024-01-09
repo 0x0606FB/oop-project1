@@ -32,6 +32,7 @@ class Student : public Person {
         int         compute_ects();
         bool        completed_mandatories() const;
         void        get_grades(bool) const;
+        bool        get_passed() const;
         void        update_ects();
         bool        can_graduate() const;
         int         get_semester() const;

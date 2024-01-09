@@ -362,13 +362,18 @@ void Secretary::menu() {
               student->set_ects(buffer1);
             }
             if (!userInput1.compare("passed")) {
+              string pstatus = "FALSE";
+              bool boolbuffer;
+              if (student->get_passed() == true) {
+                pstatus = "TRUE";
+              }
+
               cout << "// CHANGE STUDENT PASSED STATUS //////" << endl;
               cout << "-------------------------" << endl;
-              cout << "Current Passed Status:"    << student->get_name() << "     Change Passed Status To ..... "<< endl;
+              cout << "Current Passed Status:"    << pstatus << "     Change Passed Status To ..... "<< endl;
               cout << "-------------------------" << endl;
-              cin  >> buffer;
-              student->set_surname(buffer);
-              buffer.clear();
+              cin  >> boolbuffer;
+              student->set_passed(boolbuffer);
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE STUDENT  ///////" << endl;

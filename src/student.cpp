@@ -41,6 +41,8 @@ int     Student::get_semester() const {return this->semester;}
 
 int     Student::get_ects() const {return this->ects;}
 
+bool    Student::get_passed() const {return this->passed;}
+
 void    Student::get_grades (bool all_semesters) const                        {
 
     if(all_semesters == false) {
