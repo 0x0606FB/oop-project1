@@ -453,7 +453,16 @@ void Secretary::menu() {
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) { return !s->get_regnum().compare(buffer); });
 
           } else if (!userInput1.compare("register")) {
-            cout << "// REGISTER STUDENT TO COURSE ///////" << endl;
+            cout << "Give Student's register number:" << endl;
+            cin >> buffer;
+            shared_ptr<Student> s = this->find<Student>(buffer);
+
+            cout << "Give Course's serial number:" << endl;
+            cin >> buffer;
+            shared_ptr<Course> c = this->find<Course>(buffer);
+
+            s->enroll(c);
+
           } else if (!userInput1.compare("stats")) {
             cout << "// PRINT A STUDENTS' STATS ///////" << endl;
           } else if (!userInput1.compare("graduate")) {
