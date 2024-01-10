@@ -1,5 +1,6 @@
 #include "./../headers/student.hpp"
 #include "./../headers/secretary.hpp"
+#include <memory>
 
 #define     GRADECTS    240
 #define     MSEMESTER   8
@@ -67,7 +68,7 @@ void    Student::get_grades (bool all_semesters) const                        {
 
 bool    Student::can_graduate() const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
 
-void    Student::enroll(Course *c) {
+void    Student::enroll(std::shared_ptr<Course> c) {
 
     grade_per_student g;
     g.grade = 0;

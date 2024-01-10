@@ -39,7 +39,7 @@ class Student : public Person {
         bool        can_graduate() const;
         int         get_semester() const;
         int         get_ects() const;
-        void        enroll(Course *);
+        void        enroll(std::shared_ptr<Course>);
         
         Student(int semester= 0, int ects= 0, bool passed= false);
         ~Student();
