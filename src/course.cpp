@@ -5,6 +5,7 @@ void                Course::set_name(string new_name)          {Course::name = n
 void                Course::set_ects(int new_ects)             {Course::ects = new_ects;}
 void                Course::set_serialno(string new_serialno)  {Course::serialno = new_serialno;}
 void                Course::set_mandatory(bool new_mandatory)  {Course::mandatory = new_mandatory;}
+void                Course::set_enrolled(int new_enrolled)     {Course::enrolled = new_enrolled;}
 
 
 int                 Course::get_semester()                      {return this->semester;}
@@ -12,6 +13,7 @@ string              Course::get_name()                          {return this->na
 int                 Course::get_ects()                          {return this->ects;}
 string              Course::get_serialno()                      {return this->serialno;}
 bool                Course::get_mandatory()                     {return this->mandatory;}
+int                 Course::get_enrolled()      {return this->enrolled;}
 
 Course::Course(string name_, string serialno_ ,
                 int ects_ , int semester_ , bool mandatory_ ) : 

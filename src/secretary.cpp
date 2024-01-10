@@ -86,6 +86,8 @@ void Secretary::add_course(void) {
   cin >> buffer2;
   c->set_mandatory(buffer2);
 
+  c->set_enrolled(0);
+
   this->courselist.push_front(c);
 }
 
@@ -453,6 +455,7 @@ void Secretary::menu() {
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) { return !s->get_regnum().compare(buffer); });
 
           } else if (!userInput1.compare("register")) {
+            cout << "// REGISTER STUDENT TO COURSE //////" << endl;
             cout << "Give Student's register number:" << endl;
             cin >> buffer;
             shared_ptr<Student> s = this->find<Student>(buffer);
@@ -462,11 +465,33 @@ void Secretary::menu() {
             shared_ptr<Course> c = this->find<Course>(buffer);
 
             s->enroll(c);
+            buffer.clear();
 
           } else if (!userInput1.compare("stats")) {
             cout << "// PRINT A STUDENTS' STATS ///////" << endl;
+            cout << "Give Student's register number:" << endl;
+            cin >> buffer;
+
+            shared_ptr<Student> s = this->find<Student>(buffer);
+
+            buffer.clear();
+
+            cout << "'current' for current semester, 'any' for any semester (case sensitive)" << endl;
+            cin >> buffer;
+
+            if (buffer == "current") {s->get_grades(false);} else {s->get_grades(true);}
+
+            buffer.clear();
+
           } else if (!userInput1.compare("graduate")) {
             cout << "PRINT LIST OF STUDENTS WHO CAN GRADUATE ///////" << endl;
+            for (auto &p : this->studentlist) {
+              if (p->can_graduate()) {
+                cout << "Graduated :    "  << p->get_name() << "" << p->get_surname() << endl;
+                cout << "Registered as:"   << p->get_regnum() << endl;
+                cout << "Congratulations!" << endl; 
+              }
+            }
           }
         }
       }
@@ -493,6 +518,17 @@ void Secretary::menu() {
         if (continueop()) {
           if (!userInput1.compare("add")) {
             cout << "// ADD COURSE TO UNIVERSITY ///////" << endl;
+            this->add_course();
+            cin.clear();
+            for (auto &p : this->courselist) {
+              cout << p->get_name() << endl;
+              cout << p->get_serialno() << endl;
+              cout << p->get_ects() << endl;
+              cout << p->get_semester() << endl;
+              cout << p->get_enrolled() << endl;
+              cout << "----------------" << endl;
+            }
+          
           } else if (!userInput1.compare("change")) {
             check = false;
             userInput1.clear();
