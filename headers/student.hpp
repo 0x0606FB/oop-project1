@@ -3,6 +3,8 @@
 
 #include "./person.hpp"
 #include "./course.hpp"
+#include <future>
+#include <memory>
 #include <vector>
 #include <list>
 
@@ -11,8 +13,8 @@ using std::list;
 
 typedef struct {
 
-    Course   *course;
-    float     grade;
+    std::shared_ptr<Course>     course;
+    float                       grade;
 
 } grade_per_student;
 
