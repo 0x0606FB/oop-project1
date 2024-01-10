@@ -13,9 +13,12 @@ using std::shared_ptr;
 using std::string;
 
 // Basic add person function.
-template <typename T>
-void Secretary::add_person() {
+template<typename T>
+void
+Secretary::add_person()
+{
   shared_ptr<T> p(new T());
+  // Maybe EH //
   string buffer, reg_num;
   int age;
 
@@ -58,8 +61,11 @@ void Secretary::add_person() {
   }
 }
 
-void Secretary::add_course(void) {
+void
+Secretary::add_course(void)
+{
   shared_ptr<Course> c(new Course());
+  // Maybe EH //
   string buffer;
   int buffer1;
   bool buffer2;
@@ -92,24 +98,26 @@ void Secretary::add_course(void) {
 }
 
 // Find person function based on registry number.
-template <typename T>
-shared_ptr<T> Secretary::find(string s) {
+template<typename T>
+shared_ptr<T>
+Secretary::find(string s)
+{
   if constexpr (std::is_same_v<T, Student>) {
-    for (auto &p : this->studentlist) {
+    for (auto& p : this->studentlist) {
       if (!s.compare(p->get_regnum())) {
         return p;
       }
     }
     return NULL;
   } else if constexpr (std::is_same_v<T, Professor>) {
-    for (auto &p : this->professorlist) {
+    for (auto& p : this->professorlist) {
       if (!s.compare(p->get_regnum())) {
         return p;
       }
     }
     return NULL;
   } else if constexpr (std::is_same_v<T, Course>) {
-    for (auto &p : this->courselist) {
+    for (auto& p : this->courselist) {
       if (!s.compare(p->get_serialno())) {
         return p;
       }
@@ -131,11 +139,16 @@ shared_ptr<T> Secretary::find(string s) {
 //   }
 // }
 
-int Secretary::get_mandatoryno() { return 1; }
+int
+Secretary::get_mandatoryno()
+{
+  return 1;
+}
 
 // Constructor and destructor.
 Secretary::Secretary() {}
-Secretary::~Secretary() {
+Secretary::~Secretary()
+{
   // for (auto &p : this->studentlist) {
   //   delete p;
   // }
@@ -177,7 +190,9 @@ Secretary::~Secretary() {
 //     return secretarycreated;
 // }
 
-bool continueop(void) {
+bool
+continueop(void)
+{
   cout << "Do you want to continue with the operation? (Y/N)" << endl;
   string input;
   cin >> input;
@@ -188,7 +203,9 @@ bool continueop(void) {
   }
 }
 
-void Secretary::menu() {
+void
+Secretary::menu()
+{
   while (1) {
     string userInput1, buffer;
     bool check = false;
@@ -238,7 +255,7 @@ void Secretary::menu() {
             cout << "// ADD PROFESSOR TO UNIVERSITY ///////" << endl;
             this->add_person<Professor>();
             cin.clear();
-            for (auto &p : this->professorlist) {
+            for (auto& p : this->professorlist) {
               cout << p->get_age() << endl;
               cout << p->get_name() << endl;
               cout << p->get_email() << endl;
@@ -262,8 +279,11 @@ void Secretary::menu() {
               }
             }
 
+            
+
             cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
+            // EH: RETURNS NULL //
             shared_ptr<Professor> professor = this->find<Professor>(buffer);
 
             if (!userInput1.compare("name")) {
@@ -344,7 +364,7 @@ void Secretary::menu() {
             cout << "// ADD STUDENT TO UNIVERSITY ///////" << endl;
             this->add_person<Student>();
             cin.clear();
-            for (auto &p : this->studentlist) {
+            for (auto& p : this->studentlist) {
               cout << p->get_age() << endl;
               cout << p->get_semester() << endl;
               cout << p->get_name() << endl;
@@ -376,6 +396,7 @@ void Secretary::menu() {
 
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
+            // EH RETURNS NULL //
             shared_ptr<Student> student = this->find<Student>(buffer);
 
             if (!userInput1.compare("name")) {
@@ -452,6 +473,8 @@ void Secretary::menu() {
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
 
+
+            // SEE IF IT GETS REMOVED //
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) { return !s->get_regnum().compare(buffer); });
 
           } else if (!userInput1.compare("register")) {
@@ -479,17 +502,21 @@ void Secretary::menu() {
             cout << "'current' for current semester, 'any' for any semester (case sensitive)" << endl;
             cin >> buffer;
 
-            if (buffer == "current") {s->get_grades(false);} else {s->get_grades(true);}
+            if (buffer == "current") {
+              s->get_grades(false);
+            } else {
+              s->get_grades(true);
+            }
 
             buffer.clear();
 
           } else if (!userInput1.compare("graduate")) {
             cout << "PRINT LIST OF STUDENTS WHO CAN GRADUATE ///////" << endl;
-            for (auto &p : this->studentlist) {
+            for (auto& p : this->studentlist) {
               if (p->can_graduate()) {
-                cout << "Graduated :    "  << p->get_name() << "" << p->get_surname() << endl;
-                cout << "Registered as:"   << p->get_regnum() << endl;
-                cout << "Congratulations!" << endl; 
+                cout << "Graduated :    " << p->get_name() << "" << p->get_surname() << endl;
+                cout << "Registered as:" << p->get_regnum() << endl;
+                cout << "Congratulations!" << endl;
               }
             }
           }
@@ -520,15 +547,15 @@ void Secretary::menu() {
             cout << "// ADD COURSE TO UNIVERSITY ///////" << endl;
             this->add_course();
             cin.clear();
-            for (auto &p : this->courselist) {
-              cout << p->get_name() << endl;
-              cout << p->get_serialno() << endl;
-              cout << p->get_ects() << endl;
-              cout << p->get_semester() << endl;
-              cout << p->get_enrolled() << endl;
-              cout << "----------------" << endl;
-            }
-          
+            // for (auto &p : this->courselist) {
+            //   cout << p->get_name() << endl;
+            //   cout << p->get_serialno() << endl;
+            //   cout << p->get_ects() << endl;
+            //   cout << p->get_semester() << endl;
+            //   cout << p->get_enrolled() << endl;
+            //   cout << "----------------" << endl;
+            // }
+
           } else if (!userInput1.compare("change")) {
             check = false;
             userInput1.clear();
