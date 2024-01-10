@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <memory>
 #include "./person.hpp"
 #include "./student.hpp"
 #include "./professor.hpp"
@@ -17,9 +18,9 @@ using std::list;
 class Secretary {
 
     private:
-        list<Student *>   studentlist;
-        list<Professor *> professorlist;
-        list<Course *>    courselist;
+        list<std::shared_ptr<Student>>   studentlist;
+        list<std::shared_ptr<Professor>> professorlist;
+        list<std::shared_ptr<Course>>    courselist;
         int               mandatoryno;
         
         
@@ -33,7 +34,7 @@ class Secretary {
 
         template <typename T> void   dump();
 
-        template <typename T> T*     find(string);
+        template <typename T> std::shared_ptr<T>     find(string);
 
         void                         update_mandatoryno();
 

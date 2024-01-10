@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <exception>
 #include <iterator>
+#include <memory>
 #include <type_traits>
 #include <typeinfo>
 
@@ -9,10 +10,12 @@
 using std::cin;
 using std::cout;
 using std::string;
+using std::shared_ptr;
 
 // Basic add person function.
 template <typename T> void Secretary::add_person() {
-  T *p = new T();
+  
+  shared_ptr<T> p (new T());
   string buffer, reg_num;
   int age;
 
@@ -56,7 +59,7 @@ template <typename T> void Secretary::add_person() {
 }
 
 void Secretary::add_course(void) {
-  Course *c = new Course();
+  shared_ptr<Course> c (new Course());
   string buffer;
   int buffer1;
   bool buffer2;
@@ -87,7 +90,7 @@ void Secretary::add_course(void) {
 }
 
 // Find person function based on registry number.
-template <typename T> T* Secretary::find(string s) {
+template <typename T> shared_ptr<T> Secretary::find(string s) {
   if constexpr (std::is_same_v<T, Student>) {
     for (auto &p : this->studentlist) {
       if (!s.compare(p->get_regnum())) {
@@ -112,33 +115,33 @@ template <typename T> T* Secretary::find(string s) {
   }
 }
 
-// Dumps all entries of the secretary vector via iterator.
-template <typename T> void Secretary::dump() {
-  if constexpr (std::is_same_v<T, Student>) {
-    for (const auto p : this->studentlist) {
-      cout << *p;
-    }
-  } else {
-    for (const auto p : this->professorlist) {
-      cout << *p;
-    }
-  }
-}
+// // Dumps all entries of the secretary vector via iterator.
+// template <typename T> void Secretary::dump() {
+//   if constexpr (std::is_same_v<T, Student>) {
+//     for (const auto p : this->studentlist) {
+//       cout << *p;
+//     }
+//   } else {
+//     for (const auto p : this->professorlist) {
+//       cout << *p;
+//     }
+//   }
+// }
 
 int Secretary::get_mandatoryno() { return 1; }
 
 // Constructor and destructor.
 Secretary::Secretary() {}
 Secretary::~Secretary() {
-  for (auto &p : this->studentlist) {
-    delete p;
-  }
-  for (auto &p : this->professorlist) {
-    delete p;
-  }
-  for (auto &p : this->courselist) {
-    delete p;
-  }
+  // for (auto &p : this->studentlist) {
+  //   delete p;
+  // }
+  // for (auto &p : this->professorlist) {
+  //   delete p;
+  // }
+  // for (auto &p : this->courselist) {
+  //   delete p;
+  // }
 }
 
 // Copy constructor.
@@ -259,7 +262,7 @@ void Secretary::menu() {
 
             cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
-            Professor *professor = this->find<Professor>(buffer);
+            shared_ptr<Professor> professor = this->find<Professor>(buffer);
 
             if (!userInput1.compare("name")) {
               cout << "// CHANGE PROFESSOR NAME //////" << endl;
@@ -368,9 +371,11 @@ void Secretary::menu() {
               }
             }
 
+            ////// ADD EXCEPTION HANDLING //////
+
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
-            Student *student = this->find<Student>(buffer);
+            shared_ptr<Student> student = this->find<Student>(buffer);
 
             if (!userInput1.compare("name")) {
               cout << "// CHANGE STUDENT NAME //////" << endl;
@@ -384,7 +389,7 @@ void Secretary::menu() {
             if (!userInput1.compare("surname")) {
               cout << "// CHANGE STUDENT SURNAME //////" << endl;
               cout << "-------------------------" << endl;
-              cout << "Current Surname:" << student->get_name() << "     Change Surname To ..... "<< endl;
+              cout << "Current Surname:" << student->get_surname() << "     Change Surname To ..... "<< endl;
               cout << "-------------------------" << endl;
               cin  >> buffer;
               student->set_surname(buffer);
@@ -441,7 +446,14 @@ void Secretary::menu() {
               student->set_passed(boolbuffer);
             }
           } else if (!userInput1.compare("remove")) {
-            cout << "// REMOVE STUDENT  ///////" << endl;
+            cout << "// REMOVE STUDENT  ///////" << endl;          
+
+            cout << "Enter student's registration number:" << endl;
+            cin >> buffer;
+            // Student *student = this->find<Student>(buffer);
+
+            // this->studentlist.remove_if([&buffer] (shared_ptr<Student> s) {return std::move(!s->get_regnum().compare(buffer));});
+            
           } else if (!userInput1.compare("register")) {
             cout << "// REGISTER STUDENT TO COURSE ///////" << endl;
           } else if (!userInput1.compare("stats")) {

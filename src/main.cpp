@@ -3,19 +3,17 @@
 
 
 
-using std::cout;
-using std::endl;
-
-
-
 // void menu(void);
 
 int main() {
 
-    Secretary s;
+    Secretary *s = new Secretary;
 
 
-    s.menu();
+    s->menu();
+
+    delete s;
+    
 
 
 

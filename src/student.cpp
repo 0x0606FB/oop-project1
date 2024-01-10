@@ -5,7 +5,6 @@
 #define     MSEMESTER   8
 
 using std::cout;
-using std::cin;
 using std::endl;
 
 void    Student::set_semester(int new_semester)         { Student::semester = new_semester; }
