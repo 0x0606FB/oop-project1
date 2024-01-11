@@ -213,6 +213,7 @@ Secretary::menu()
     bool check = false;
     cin.clear();
     userInput1.clear();
+    cout << "Current Semester: " << (current_semester == 1 ? "Winter" : "Summer") << endl;
     while (!check) {
       try {
         cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 4 to move to next semester, 0 to quit menu" << endl;
@@ -673,4 +674,5 @@ Secretary::menu()
     else if (!userInput1.compare("4")) {
       current_semester = (current_semester == 1) ?2:1;
   }
+}
 }
