@@ -333,6 +333,15 @@ Secretary::menu()
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE PROFESSOR  ///////" << endl;
+
+            
+            cout << "Enter student's registration number:" << endl;
+            cin >> buffer;
+
+
+            // SEE IF IT GETS REMOVED //
+            this->professorlist.remove_if([&buffer](shared_ptr<Professor> p) { return !p->get_regnum().compare(buffer);});
+            
           } else if (!userInput1.compare(("stats"))) {
             cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////" << endl;
           }
