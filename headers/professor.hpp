@@ -3,22 +3,24 @@
 
 #include "./person.hpp"
 #include "./course.hpp"
+#include "./student.hpp"
 
 #include <list>
+#include <memory>
 
 using std::list;
 
 class   Professor : public Person {
 
     private:
-        list<Course *> courselist;
+        list<std::shared_ptr<Course>> courselist;
 
 
     public:
 
-        void            assign_to_course(Course *);
+        void            assign_to_course(std::shared_ptr<Course>);
         void            print_stats(void) const;
-        // void         grade
+        void            grade_student(std::shared_ptr<Student>, std::shared_ptr<Course>);
 
         Professor();
         ~Professor();

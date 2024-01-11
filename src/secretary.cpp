@@ -206,6 +206,7 @@ continueop(void)
 void
 Secretary::menu()
 {
+main_menu:
   while (1) {
     string userInput1, buffer;
     bool check = false;
@@ -238,9 +239,10 @@ Secretary::menu()
 
       while (!check) {
         try {
-          cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'stats' or 'back' to go back (case sensitive)" << endl;
+          cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'grade' ,'stats' , 'assign' or 'back' to go back (case sensitive)" << endl;
           cin >> userInput1;
-          if (userInput1.compare("add") && userInput1.compare("change") && userInput1.compare("remove") && userInput1.compare("stats") && userInput1.compare("back")) {
+          if (userInput1.compare("add") && userInput1.compare("change") && userInput1.compare("remove")
+           && userInput1.compare("stats") && userInput1.compare("grade") && userInput1.compare("assign") && userInput1.compare("back")) {
             throw "False Expression.\n";
           }
           check = true;
@@ -256,11 +258,11 @@ Secretary::menu()
             this->add_person<Professor>();
             cin.clear();
             for (auto& p : this->professorlist) {
-              cout << p->get_age() << endl;
-              cout << p->get_name() << endl;
-              cout << p->get_email() << endl;
-              cout << p->get_surname() << endl;
-              cout << "----------------" << endl;
+              // cout << p->get_age() << endl;
+              // cout << p->get_name() << endl;
+              // cout << p->get_email() << endl;
+              // cout << p->get_surname() << endl;
+              // cout << "----------------" << endl;
             }
           } else if (!userInput1.compare("change")) {
             check = false;
@@ -335,7 +337,7 @@ Secretary::menu()
             cout << "// REMOVE PROFESSOR  ///////" << endl;
 
             
-            cout << "Enter student's registration number:" << endl;
+            cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
 
 
@@ -344,6 +346,67 @@ Secretary::menu()
             
           } else if (!userInput1.compare(("stats"))) {
             cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////" << endl;
+          } else if (!userInput1.compare("assign")) {
+            cout << "// ASSIGN PROFESSOR TO COURSE  ///////" << endl;
+
+            cout << "Do you want to see a list of all the courses? (Y/N)?"; 
+            cin >> buffer;
+            if (buffer == "Y" || buffer == "y") {
+              for (auto &p : this->courselist) {
+                cout << p->get_name() << ":" << "  " << p->get_serialno() << endl;
+                cout << "Semester :" << "  " << p->get_semester() << endl;
+                cout << "----------------------------------" << endl;
+              }
+            }
+
+            // EH //
+
+            buffer.clear();
+            
+            cout << "Enter Course ID:" << endl;
+            cin >> buffer;
+            shared_ptr<Course> c = this->find<Course>(buffer);
+
+            while (c == NULL) {
+              buffer.clear();
+              cout << "Course ID not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Course ID:" << endl;
+                cin >> buffer;
+                c = this->find<Course>(buffer);
+              }
+            }
+            
+            if (c != NULL) {
+              cout << "Enter Professor Registration:" << endl;
+              cin >> buffer;
+              shared_ptr<Professor> p = this->find<Professor>(buffer);
+
+              while (p == NULL) {
+                buffer.clear();
+                cout << "Professor ID not found. Do you want to try again? (Y/N)";
+                cin >> buffer;
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Professor ID:" << endl;
+                  cin >> buffer;
+                  p = this->find<Professor>(buffer);
+                }
+              }
+
+              p->assign_to_course(c);
+            }
+          
+          } else if (!userInput1.compare("grade")) {
+            cout << "// GRADE A STUDENT //////" << endl;
+            cout << "Do you want to print a list of the courses you have been assigned to? (Y/N)" << endl;
+
           }
         }
       }
