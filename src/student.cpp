@@ -74,6 +74,7 @@ void    Student::enroll(std::shared_ptr<Course> c) {
     g.grade = 0;
     g.course = c;
     this->grades.push_front(g);
+    c->set_enrolled(c->get_enrolled()+1);
     
 }
 

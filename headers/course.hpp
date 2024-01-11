@@ -28,6 +28,7 @@ class   Course {
         string              get_serialno();
         bool                get_mandatory();
         int                 get_enrolled();
+        int                 get_passed();
 
         void                set_enrolled(int);
         void                set_semester(int);
