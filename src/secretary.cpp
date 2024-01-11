@@ -673,6 +673,9 @@ Secretary::menu()
     }
     else if (!userInput1.compare("4")) {
       current_semester = (current_semester == 1) ?2:1;
+      for(auto &p: this->studentlist){
+        p->set_semester(p->get_semester()+1);
+      }
   }
 }
 }

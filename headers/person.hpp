@@ -11,7 +11,7 @@ using std::string;
 #define NO_SUR "DEFAULT"
 #define NO_MAIL "DEFAULT"   
 #define NO_REG "DEFAULT"
-#define NO_AGE 0 
+#define NO_BIRTHYEAR 0 
 
 
 class Person{
@@ -19,7 +19,7 @@ class Person{
     private:
         static int count;        
         string name, surname, email, reg_num;
-        int age;
+        int birthyear;
 
     public:
         
@@ -35,8 +35,8 @@ class Person{
         string      get_email() const; 
         void        set_email(string);
         
-        int         get_age() const;
-        void        set_age(int);
+        int         get_birthyear() const;
+        void        set_birthyear(int);
         
         static int  get_total_counter();
         static void decrease_count();
@@ -49,7 +49,7 @@ class Person{
                 string surname = NO_SUR, 
                 string reg_num = NO_REG, 
                 string email = NO_MAIL,
-                int age = NO_AGE);
+                int birthyear = NO_BIRTHYEAR);
 
         ~Person();
 
