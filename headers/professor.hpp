@@ -19,6 +19,7 @@ class   Professor : public Person {
     public:
 
         void            assign_to_course(std::shared_ptr<Course>);
+        void            drop_course(std::shared_ptr<Course>);
         void            print_stats(void) const;
         void            grade_student(std::shared_ptr<Student>, std::shared_ptr<Course>);
 
