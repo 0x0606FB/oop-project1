@@ -2,3 +2,8 @@
 
 Professor::Professor(){};
 Professor::~Professor(){};
+
+
+void Professor::assign_to_course(std::shared_ptr<Course> c){
+    this->courselist.push_front(c);
+}
