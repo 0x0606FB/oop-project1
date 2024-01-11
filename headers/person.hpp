@@ -29,8 +29,8 @@ class Person{
         string      get_surname() const;
         void        set_surname(string);
         
-        string         get_regnum() const;
-        void           set_regnum(string);
+        string      get_regnum() const;
+        void        set_regnum(string);
         
         string      get_email() const; 
         void        set_email(string);

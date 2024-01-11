@@ -12,6 +12,8 @@ using std::cout;
 using std::shared_ptr;
 using std::string;
 
+int current_semester = 1;
+
 // Basic add person function.
 template<typename T>
 void
@@ -206,7 +208,6 @@ continueop(void)
 void
 Secretary::menu()
 {
-main_menu:
   while (1) {
     string userInput1, buffer;
     bool check = false;
@@ -214,9 +215,9 @@ main_menu:
     userInput1.clear();
     while (!check) {
       try {
-        cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 0 to quit menu" << endl;
+        cout << "Press 1 for Professor options, 2 for Student options, 3 for Course options, 4 to move to next semester, 0 to quit menu" << endl;
         cin >> userInput1;
-        if (userInput1.compare("1") && userInput1.compare("2") && userInput1.compare("3") && userInput1.compare("0")) {
+        if (userInput1.compare("1") && userInput1.compare("2") && userInput1.compare("3") && userInput1.compare("4") && userInput1.compare("0")) {
           throw "False Value.\n";
         } else if (!userInput1.compare("0")) {
           throw 0;
@@ -669,5 +670,7 @@ main_menu:
         }
       }
     }
+    else if (!userInput1.compare("4")) {
+      current_semester = (current_semester == 1) ?2:1;
   }
 }
