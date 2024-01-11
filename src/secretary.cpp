@@ -243,8 +243,8 @@ Secretary::menu()
         try {
           cout << "PROFESSOR OPTIONS: Enter 'add', 'change' or 'remove', 'grade' ,'stats' , 'assign' or 'back' to go back (case sensitive)" << endl;
           cin >> userInput1;
-          if (userInput1.compare("add") && userInput1.compare("change") && userInput1.compare("remove")
-           && userInput1.compare("stats") && userInput1.compare("grade") && userInput1.compare("assign") && userInput1.compare("back")) {
+          if (userInput1.compare("add") && userInput1.compare("change") && userInput1.compare("remove") && userInput1.compare("stats") && userInput1.compare("grade") && userInput1.compare("assign") &&
+              userInput1.compare("back")) {
             throw "False Expression.\n";
           }
           check = true;
@@ -282,8 +282,6 @@ Secretary::menu()
                 cout << s;
               }
             }
-
-            
 
             cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
@@ -338,25 +336,25 @@ Secretary::menu()
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE PROFESSOR  ///////" << endl;
 
-            
             cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
 
-
             // SEE IF IT GETS REMOVED //
-            this->professorlist.remove_if([&buffer](shared_ptr<Professor> p) { return !p->get_regnum().compare(buffer);});
-            
+            this->professorlist.remove_if([&buffer](shared_ptr<Professor> p) { return !p->get_regnum().compare(buffer); });
+
           } else if (!userInput1.compare(("stats"))) {
             cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////" << endl;
           } else if (!userInput1.compare("assign")) {
             cout << "// ASSIGN PROFESSOR TO COURSE  ///////" << endl;
 
-            cout << "Do you want to see a list of all the courses? (Y/N)?"; 
+            cout << "Do you want to see a list of all the courses? (Y/N)?";
             cin >> buffer;
             if (buffer == "Y" || buffer == "y") {
-              for (auto &p : this->courselist) {
-                cout << p->get_name() << ":" << "  " << p->get_serialno() << endl;
-                cout << "Semester :" << "  " << p->get_semester() << endl;
+              for (auto& p : this->courselist) {
+                cout << p->get_name() << ":"
+                     << "  " << p->get_serialno() << endl;
+                cout << "Semester :"
+                     << "  " << p->get_semester() << endl;
                 cout << "----------------------------------" << endl;
               }
             }
@@ -364,7 +362,7 @@ Secretary::menu()
             // EH //
 
             buffer.clear();
-            
+
             cout << "Enter Course ID:" << endl;
             cin >> buffer;
             shared_ptr<Course> c = this->find<Course>(buffer);
@@ -382,7 +380,7 @@ Secretary::menu()
                 c = this->find<Course>(buffer);
               }
             }
-            
+
             if (c != NULL) {
               cout << "Enter Professor Registration:" << endl;
               cin >> buffer;
@@ -404,11 +402,10 @@ Secretary::menu()
 
               p->assign_to_course(c);
             }
-          
+
           } else if (!userInput1.compare("grade")) {
             cout << "// GRADE A STUDENT //////" << endl;
             cout << "Do you want to print a list of the courses you have been assigned to? (Y/N)" << endl;
-
           }
         }
       }
@@ -547,7 +544,6 @@ Secretary::menu()
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
 
-
             // SEE IF IT GETS REMOVED //
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) { return !s->get_regnum().compare(buffer); });
 
@@ -663,19 +659,20 @@ Secretary::menu()
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE COURSE  ///////" << endl;
-          } else if (!userInput1.compare("assign")) {
-            cout << "// ASSIGN PROFESSOR TO COURSE  ///////" << endl;
           } else if (!userInput1.compare("export")) {
             cout << "// EXPORT A LIST OF STUDENTS WHO HAVE COMPLETED A COURSE  ///////" << endl;
           }
         }
       }
-    }
-    else if (!userInput1.compare("4")) {
-      current_semester = (current_semester == 1) ?2:1;
-      for(auto &p: this->studentlist){
-        p->set_semester(p->get_semester()+1);
+    } else if (!userInput1.compare("4")) {
+
+      cout << "WARNING: Verify that all students have been graded before the end of the current semester!" << endl;
+      if (continueop()) {
+        current_semester = (current_semester == 1) ? 2 : 1;
+        for (auto& p : this->studentlist) {
+          p->set_semester(p->get_semester() + 1);
+        }
       }
+    }
   }
-}
 }
