@@ -1,4 +1,5 @@
 #include "./../headers/professor.hpp"
+#include <memory>
 using std::cout;
 using std::endl;
 
@@ -23,4 +24,8 @@ void Professor::print_stats() const{
         cout << "Students Enrolled:" << p->get_enrolled() << endl;
 
     }
+}
+
+void     Professor::cleanup(std::shared_ptr<Course> c) {
+    this->courselist.remove_if([c] (std::shared_ptr<Course> g) {return g == c;});
 }
