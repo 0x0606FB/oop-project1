@@ -283,11 +283,23 @@ Secretary::menu()
               }
             }
 
-            cout << "Enter professor's registration number:" << endl;
-            cin >> buffer;
-            // EH: RETURNS NULL //
-            shared_ptr<Professor> professor = this->find<Professor>(buffer);
-
+            
+              cout << "Enter professor's registration number:" << endl;
+              cin >> buffer;
+              shared_ptr<Professor> professor = this->find<Professor>(buffer);
+              while (professor == NULL) {
+                buffer.clear();
+                cout << "Professor not found. Do you want to try again? (Y/N)";
+                cin >> buffer;
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Professor's registration number:" << endl;
+                  cin >> buffer;
+                  professor = this->find<Professor>(buffer);
+                }
+              }
             if (!userInput1.compare("name")) {
               cout << "// CHANGE PROFESSOR NAME //////" << endl;
               cout << "-------------------------" << endl;
@@ -359,7 +371,6 @@ Secretary::menu()
               }
             }
 
-            // EH //
 
             buffer.clear();
 
@@ -467,8 +478,20 @@ Secretary::menu()
 
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
-            // EH RETURNS NULL //
             shared_ptr<Student> student = this->find<Student>(buffer);
+            while (student == NULL) {
+                buffer.clear();
+                cout << "Student not found. Do you want to try again? (Y/N)";
+                cin >> buffer;
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Student's registration number:" << endl;
+                  cin >> buffer;
+                  student = this->find<Student>(buffer);
+                }
+              }
 
             if (!userInput1.compare("name")) {
               cout << "// CHANGE STUDENT NAME //////" << endl;
@@ -680,9 +703,14 @@ Secretary::menu()
               cout << "Current Semester:" << course->get_semester() << "     Change Semester To ..... " << endl;
               cout << "-------------------------" << endl;
               cin >> buffer2;
-
-              // EH FOR SEMESTER (1<=sem<=8) /////////55
-
+              while(buffer2>8 || buffer2<1){
+                cout << "Courses can only be assigned to semesters 1-8. Do you want to try again? (Y/N)" << endl;
+                cin >> buffer;
+                if(buffer != "Y" && buffer != "y"){
+                  break;
+                }
+                cin >> buffer2;
+              }
               course->set_semester(buffer2);
             }
             if (!userInput1.compare("mandatory")) {
