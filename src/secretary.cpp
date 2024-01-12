@@ -723,6 +723,9 @@ Secretary::menu()
               for (auto &s : this->studentlist) {
                 s->cleanup(c);
               }
+              for (auto &p : this->professorlist) {
+                p->cleanup(c);
+              }
 
             } 
 
