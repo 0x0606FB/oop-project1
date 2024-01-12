@@ -474,8 +474,6 @@ Secretary::menu()
               }
             }
 
-            ////// ADD EXCEPTION HANDLING //////
-
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
             shared_ptr<Student> student = this->find<Student>(buffer);
