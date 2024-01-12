@@ -652,7 +652,7 @@ Secretary::menu()
               cout << "// CHANGE COURSE ECTS //////" << endl;
             }
             if (!userInput1.compare("semester")) {
-              cout << "// CHANGE COURSE PASSED SEMESTER //////" << endl;
+              cout << "// CHANGE COURSE SEMESTER //////" << endl;
             }
             if (!userInput1.compare("mandatory")) {
               cout << "// CHANGE COURSE MANDATORY STATUS //////" << endl;
