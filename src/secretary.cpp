@@ -681,15 +681,51 @@ Secretary::menu()
               cout << "-------------------------" << endl;
               cin >> buffer2;
 
-              // EH FOR SEMESTER (1<=sem<=8) /////////55
+              // EH FOR SEMESTER (1<=sem<=8) /////////
 
               course->set_semester(buffer2);
             }
             if (!userInput1.compare("mandatory")) {
-              cout << "// CHANGE COURSE MANDATORY STATUS //////" << endl;
+                cout << "// CHANGE COURSE MANDATORY STATUS //////" << endl;;
+                cout << "-------------------------" << endl;
+                cout << "Current Mandatory Status:" << course->get_mandatory() << "     Change Mandatory Status To (0 for false, 1 true)..... " << endl;
+                cout << "-------------------------" << endl;
+                int buffer1;
+                cin >> buffer1;
+
+                course->set_mandatory((buffer1 == 0) ? false : true);
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE COURSE  ///////" << endl;
+
+            buffer.clear();
+
+            cout << "Enter Course ID:" << endl;
+            cin >> buffer;
+            shared_ptr<Course> c = this->find<Course>(buffer);
+
+            while (c == NULL) {
+              buffer.clear();
+              cout << "Course ID not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Course ID:" << endl;
+                cin >> buffer;
+                c = this->find<Course>(buffer);
+              }
+            }
+
+            if (c != NULL) {
+
+              for (auto &s : this->studentlist) {
+                s->cleanup(c);
+              }
+
+            } 
+
           } else if (!userInput1.compare("export")) {
             cout << "// EXPORT A LIST OF STUDENTS WHO HAVE COMPLETED A COURSE  ///////" << endl;
           }
