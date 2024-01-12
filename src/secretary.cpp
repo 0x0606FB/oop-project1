@@ -642,17 +642,48 @@ Secretary::menu()
                 cout << s;
               }
             }
+            cout << "Enter Course ID:" << endl;
+            cin >> buffer;
+            shared_ptr<Course> course = this->find<Course>(buffer); 
+
             if (!userInput1.compare("name")) {
               cout << "// CHANGE COURSE NAME //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Name:" << course->get_name() << "     Change Name To ..... " << endl;
+              cout << "-------------------------" << endl;
+              cin >> buffer;
+              course->set_name(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("serialno")) {
-              cout << "// CHANGE COURSE SERIALNO //////" << endl;
+              cout << "// CHANGE COURSE ID //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Course ID:" << course->get_serialno() << "     Change Course ID To ..... " << endl;
+              cout << "-------------------------" << endl;
+              cin >> buffer;
+              course->set_serialno(buffer);
+              buffer.clear();
             }
             if (!userInput1.compare("ects")) {
-              cout << "// CHANGE COURSE ECTS //////" << endl;
+              int buffer2;
+              cout << "// CHANGE COURSE ECTs //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current ECTs:" << course->get_ects() << "     Change ECTs To ..... " << endl;
+              cout << "-------------------------" << endl;
+              cin >> buffer2;
+              course->set_ects(buffer2);
             }
             if (!userInput1.compare("semester")) {
-              cout << "// CHANGE COURSE PASSED SEMESTER //////" << endl;
+              int buffer2;
+              cout << "// CHANGE COURSE SEMESTER //////" << endl;
+              cout << "-------------------------" << endl;
+              cout << "Current Semester:" << course->get_semester() << "     Change Semester To ..... " << endl;
+              cout << "-------------------------" << endl;
+              cin >> buffer2;
+
+              // EH FOR SEMESTER (1<=sem<=8) /////////55
+
+              course->set_semester(buffer2);
             }
             if (!userInput1.compare("mandatory")) {
               cout << "// CHANGE COURSE MANDATORY STATUS //////" << endl;
