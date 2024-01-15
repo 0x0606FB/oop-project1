@@ -422,8 +422,6 @@ Secretary::menu()
             }
             
 
-            //// X MARKS THE SPOT ////
-
             if (c != NULL) {
               cout << "Enter Professor Registration:" << endl;
               cin >> buffer;
