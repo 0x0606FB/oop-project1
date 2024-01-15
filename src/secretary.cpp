@@ -208,6 +208,30 @@ continueop(void)
 void
 Secretary::menu()
 {
+
+  string import;
+  string studentimportfile   = "istud.txt";
+  string professorimportfile = "iprof.txt";
+  string courseimportfile    = "icourse.txt";
+
+  cout << "Import Student Files? (Y/N)" << endl;
+  cin >> import;
+  if (import == "Y" || import == "y") {
+    cout << "Importing student files from" << studentimportfile << "..." << endl;
+  } 
+
+  cout << "Import Professor Files? (Y/N)" << endl;
+  cin >> import;
+  if (import == "Y" || import == "y") {
+    cout << "Importing professor files from" << professorimportfile << "..." << endl;
+  } 
+
+  cout << "Import Course Files? (Y/N)" << endl;
+  cin >> import;
+  if (import == "Y" || import == "y") {
+    cout << "Importing course files from" << courseimportfile << "..." << endl;
+  } 
+
   while (1) {
     string userInput1, buffer;
     bool check = false;

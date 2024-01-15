@@ -1,5 +1,7 @@
 #include "./../headers/professor.hpp"
+#include <algorithm>
 #include <memory>
+#include <list>
 using std::cout;
 using std::endl;
 
@@ -9,6 +11,15 @@ Professor::~Professor(){};
 
 
 void Professor::assign_to_course(std::shared_ptr<Course> c){
+    
+    auto iterator = std::find_if(this->courselist.begin(), this->courselist.end(), 
+                                        [c] (std::shared_ptr<Course> c1) {return c == c1;});
+    
+    if (iterator != this->courselist.end()) {
+        cout << "ERROR: Professor has already been assigned to this course." << endl;
+        return;
+    }
+    
     this->courselist.push_front(c);
 }
 
