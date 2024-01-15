@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <memory>
 #include <list>
+using std::cin;
 using std::cout;
 using std::endl;
 
@@ -37,6 +38,20 @@ void Professor::print_stats() const{
     }
 }
 
+void grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course> c){
+    int grade;
+    cout << "Enter grade: ";
+    cin >> grade;
+
+    // s->grade_entry(grade, c);
+
+    // auto iterator = std::find_if(Student::s->grades.begin(), Student::s->grades.end(), 
+    //                                     [c] (grade_per_student c1) {return c == c1.course;});
+
+}
+
+
 void     Professor::cleanup(std::shared_ptr<Course> c) {
     this->courselist.remove_if([c] (std::shared_ptr<Course> g) {return g == c;});
 }
+

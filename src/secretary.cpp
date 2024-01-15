@@ -465,7 +465,7 @@ Secretary::menu() {
 
               while (p == NULL) {
                 buffer.clear();
-                cout << "Professor ID not found. Do you want to try again? (Y/N)";
+                cout << "Professor ID not found. Do you want to try again? (Y/N) ";
                 cin >> buffer;
                 if (buffer != "Y" && buffer != "y") {
                   break;

@@ -1,6 +1,8 @@
 #include "./../headers/student.hpp"
 #include "./../headers/secretary.hpp"
 #include <memory>
+#include <algorithm>
+
 
 #define     GRADECTS    240
 #define     MSEMESTER   8
@@ -70,6 +72,13 @@ bool    Student::can_graduate() const                     {return (this->semeste
 
 void    Student::enroll(std::shared_ptr<Course> c) {
 
+    auto iterator = std::find_if(this->grades.begin(), this->grades.end(), 
+                                        [c] (grade_per_student c1) {return c == c1.course;});
+
+    if (iterator != this->grades.end()) {
+        cout << "ERROR: Student has already been enrolled to this course." << endl;
+        return;
+    }
     grade_per_student g;
     g.grade = 0;
     g.course = c;
@@ -77,6 +86,11 @@ void    Student::enroll(std::shared_ptr<Course> c) {
     c->set_enrolled(c->get_enrolled()+1);
     
 }
+
+
+
+
+
 
 void     Student::cleanup(std::shared_ptr<Course> c) {
     this->grades.remove_if([c] (grade_per_student g) {return g.course == c;});
