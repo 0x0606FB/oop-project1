@@ -371,7 +371,6 @@ Secretary::menu()
               }
             }
 
-
             buffer.clear();
 
             cout << "Enter Course ID:" << endl;
@@ -391,6 +390,9 @@ Secretary::menu()
                 c = this->find<Course>(buffer);
               }
             }
+            
+
+            //// X MARKS THE SPOT ////
 
             if (c != NULL) {
               cout << "Enter Professor Registration:" << endl;
@@ -410,7 +412,6 @@ Secretary::menu()
                   p = this->find<Professor>(buffer);
                 }
               }
-
               p->assign_to_course(c);
             }
 
@@ -569,6 +570,9 @@ Secretary::menu()
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) { return !s->get_regnum().compare(buffer); });
 
           } else if (!userInput1.compare("register")) {
+ 
+            /// ADD EH ///
+ 
             cout << "// REGISTER STUDENT TO COURSE //////" << endl;
             cout << "Give Student's register number:" << endl;
             cin >> buffer;
@@ -585,6 +589,8 @@ Secretary::menu()
             cout << "// PRINT A STUDENTS' STATS ///////" << endl;
             cout << "Give Student's register number:" << endl;
             cin >> buffer;
+
+            // ADD EH //
 
             shared_ptr<Student> s = this->find<Student>(buffer);
 
@@ -663,6 +669,8 @@ Secretary::menu()
                 cout << s;
               }
             }
+
+            // EXCEPTION HANDLING ////
             cout << "Enter Course ID:" << endl;
             cin >> buffer;
             shared_ptr<Course> course = this->find<Course>(buffer); 
@@ -745,15 +753,14 @@ Secretary::menu()
             }
 
             if (c != NULL) {
-
               for (auto &s : this->studentlist) {
                 s->cleanup(c);
               }
               for (auto &p : this->professorlist) {
                 p->cleanup(c);
               }
+            }
 
-            } 
 
           } else if (!userInput1.compare("export")) {
             cout << "// EXPORT A LIST OF STUDENTS WHO HAVE COMPLETED A COURSE  ///////" << endl;
@@ -767,6 +774,7 @@ Secretary::menu()
         current_semester = (current_semester == 1) ? 2 : 1;
         for (auto& p : this->studentlist) {
           p->set_semester(p->get_semester() + 1);
+          p->update_ects();
         }
       }
     }

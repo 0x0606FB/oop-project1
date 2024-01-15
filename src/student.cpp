@@ -25,7 +25,7 @@ void    Student::update_ects()                       {
 bool    Student::completed_mandatories(void)   const      {
     auto counter = 0;
     for (auto & c : this->grades) {
-        if (c.course->get_mandatory() == true) {
+        if ((c.course->get_mandatory() && c.grade >= 5.0 ) == true) {
             counter++;
         }
     }
