@@ -1,0 +1,2 @@
+diakrita k08 6 1 20 true 
+takis k10 6 1 25 true

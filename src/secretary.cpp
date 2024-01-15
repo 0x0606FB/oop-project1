@@ -1,14 +1,18 @@
 #include <algorithm>
 
+#include <cstdio>
 #include <exception>
 
 #include <iterator>
 
 #include <memory>
 
+#include <string>
 #include <type_traits>
 
 #include <typeinfo>
+
+#include <fstream>
 
 #include "./../headers/secretary.hpp"
 
@@ -204,40 +208,65 @@ continueop(void) {
   }
 }
 
+
+void
+import(string im) {
+
+  string name, serialno, mandatory, dummy;
+  int ects, semester, enrolled;
+  
+  
+  std::ifstream fin;
+  fin.open(im, std::ios::in);
+
+  while (fin.is_open()) {
+
+    while (std::getline())
+    
+
+
+    
+  }
+
+
+  fin.close();
+
+}
+
 void
 Secretary::menu() {
 
-  string
-  import;
-  string studentimportfile = "istud.txt";
-  string professorimportfile = "iprof.txt";
-  string courseimportfile = "icourse.txt";
+  string importbuf;
+  string studentimportfile = "./../import/istud.txt";
+  string professorimportfile = "./../import/iprof.txt";
+  string courseimportfile = "./../import/icourse.txt";
 
   cout << "Import Student Files? (Y/N)" << endl;
   cin >>
-    import;
+    importbuf;
   if (
-    import == "Y" ||
-    import == "y") {
+    importbuf == "Y" ||
+    importbuf == "y") {
     cout << "Importing student files from" << studentimportfile << "..." << endl;
   }
 
   cout << "Import Professor Files? (Y/N)" << endl;
   cin >>
-    import;
+    importbuf;
   if (
-    import == "Y" ||
-    import == "y") {
+    importbuf == "Y" ||
+    importbuf == "y") {
     cout << "Importing professor files from" << professorimportfile << "..." << endl;
   }
 
   cout << "Import Course Files? (Y/N)" << endl;
   cin >>
-    import;
+    importbuf;
   if (
-    import == "Y" ||
-    import == "y") {
+    importbuf == "Y" ||
+    importbuf == "y") {
     cout << "Importing course files from" << courseimportfile << "..." << endl;
+    import(courseimportfile);
   }
 
   while (1) {
