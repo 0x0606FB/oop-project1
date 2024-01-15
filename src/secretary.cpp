@@ -377,10 +377,16 @@ Secretary::menu()
             cin >> buffer;
             shared_ptr<Course> c = this->find<Course>(buffer);
 
-            while (c == NULL) {
+            while (c == NULL || (c->get_semester()%2 == 0 && current_semester == 1 || c->get_semester()%2 == 1 && current_semester == 2) ) {
               buffer.clear();
-              cout << "Course ID not found. Do you want to try again? (Y/N)";
-              cin >> buffer;
+              if (c == NULL){
+                cout << "Course ID not found. Do you want to try again? (Y/N)";
+                cin >> buffer;
+              }
+              else{
+                cout << "Course does not belong to the current semester. Do you want to try again? (Y/N)";
+                cin >> buffer; 
+              }
               if (buffer != "Y" && buffer != "y") {
                 break;
               } else {
@@ -571,38 +577,93 @@ Secretary::menu()
 
           } else if (!userInput1.compare("register")) {
  
-            /// ADD EH ///
- 
             cout << "// REGISTER STUDENT TO COURSE //////" << endl;
-            cout << "Give Student's register number:" << endl;
+            cout << "Enter Student's register number:" << endl;
             cin >> buffer;
             shared_ptr<Student> s = this->find<Student>(buffer);
 
-            cout << "Give Course's serial number:" << endl;
+            while (s == NULL) {
+              buffer.clear();
+              cout << "Student's register number not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Student's register number:" << endl;
+                cin >> buffer;
+                s = this->find<Student>(buffer);
+              }
+            }
+
+            cout << "Enter Course ID:" << endl;
             cin >> buffer;
             shared_ptr<Course> c = this->find<Course>(buffer);
+
+            while (c == NULL) {
+              buffer.clear();
+              cout << "Course ID not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Course ID:" << endl;
+                cin >> buffer;
+                c = this->find<Course>(buffer);
+              }
+            }
 
             s->enroll(c);
             buffer.clear();
 
           } else if (!userInput1.compare("stats")) {
             cout << "// PRINT A STUDENTS' STATS ///////" << endl;
-            cout << "Give Student's register number:" << endl;
+            cout << "Enter Student's register number:" << endl;
             cin >> buffer;
-
-            // ADD EH //
-
             shared_ptr<Student> s = this->find<Student>(buffer);
-
             buffer.clear();
 
-            cout << "'current' for current semester, 'any' for any semester (case sensitive)" << endl;
+            while (s == NULL) {
+              buffer.clear();
+              cout << "Student's register number not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Student's register number:" << endl;
+                cin >> buffer;
+                s = this->find<Student>(buffer);
+              }
+            }
+
+            cout << "Enter 'current' for current semester, 'all' for all semesters (case sensitive)" << endl;
             cin >> buffer;
 
-            if (buffer == "current") {
-              s->get_grades(false);
-            } else {
-              s->get_grades(true);
+            bool flag = false;
+
+            while(flag == false){
+              if (buffer == "current") {
+                flag == true;
+                s->get_grades(false);
+              } else if(buffer == "all"){
+                flag == true;
+                s->get_grades(true);
+              }
+              else{
+                cout << "Wrong input. Do you want to try again?(Y/N) ";
+                cin >> buffer;
+                if(buffer != "Y" && buffer != "y"){
+                  break;
+                }
+                else{
+                  buffer.clear();
+                  cout << "Enter 'current' for current semester, 'all' for all semesters (case sensitive)" << endl;
+                  cin >> buffer;
+                }
+
+              }
             }
 
             buffer.clear();
