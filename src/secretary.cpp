@@ -483,7 +483,7 @@ Secretary::menu() {
 
           } else if (!userInput1.compare("grade")) {
             cout << "// GRADE A STUDENT //////" << endl;
-            
+
               cout << "Enter Professor Registration:" << endl;
               cin >> buffer;
               shared_ptr < Professor > p = this -> find < Professor > (buffer);
@@ -511,6 +511,46 @@ Secretary::menu() {
 
                 cout << "Enter Course Serial Number: ";
                 cin >> buffer;
+
+
+                shared_ptr<Course> c = this->find<Course>(buffer);
+
+                while(c == NULL){
+                  cout << "Course not found. Do you want to try again? (Y/N)" << endl;
+                  cin >> buffer;
+                  if(buffer != "Y" && buffer != "y"){
+                    break;
+                  }
+                  else{
+                    cout << "Enter Course Serial Number: ";
+                    cin >> buffer;
+                  }
+                }
+
+                if(c != NULL){
+                  cout << "Enter Student's register number: ";    
+                  cin >> buffer;
+                  
+                  shared_ptr<Student> s = this->find<Student>(buffer);
+
+
+                  while(s == NULL){
+                    cout << "Student not found. Do you want to try again? (Y/N)" << endl;
+                    cin >> buffer;
+                    if(buffer != "Y" && buffer != "y"){
+                      break;
+                    }
+                    else{
+                      cout << "Enter Student register number: ";
+                      cin >> buffer;
+                    }
+                  }
+
+                  if(s != NULL){
+                    p->grade_student(s, c);
+                  }
+
+                }
                 
                  
                 
