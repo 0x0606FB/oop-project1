@@ -42,12 +42,26 @@ void grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course> c){
     int grade;
     cout << "Enter grade: ";
     cin >> grade;
-
     // s->grade_entry(grade, c);
 
-    // auto iterator = std::find_if(Student::s->grades.begin(), Student::s->grades.end(), 
-    //                                     [c] (grade_per_student c1) {return c == c1.course;});
+    auto iterator = std::find_if(s->grades.begin(), s->grades.end(), 
+                                        [c] (grade_per_student c1) {return c == c1.course;});
 
+    if (iterator != s->grades.end()) {
+        iterator->grade = grade;
+        cout << "Grade assigned successfully." << endl;
+    } else {
+        cout << "Student has not enrolled in this course." << endl;
+    }
+
+}
+
+void     Professor::dump_courses () const {
+    for (auto &c : this->courselist) {
+        cout << c->get_name() << "  :  " << c->get_serialno() << endl;
+        cout << "______________________________" << endl;
+        cout << "Semester " << c->get_semester() << endl;
+    }
 }
 
 

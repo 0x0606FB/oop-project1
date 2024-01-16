@@ -209,29 +209,29 @@ continueop(void) {
 }
 
 
-void
-import(string im) {
+// void
+// import(string im) {
 
-  string name, serialno, mandatory, dummy;
-  int ects, semester, enrolled;
+//   string name, serialno, mandatory, dummy;
+//   int ects, semester, enrolled;
   
   
-  std::ifstream fin;
-  fin.open(im, std::ios::in);
+//   std::ifstream fin;
+//   fin.open(im, std::ios::in);
 
-  while (fin.is_open()) {
+//   while (fin.is_open()) {
 
-    while (std::getline())
+//     while ()
     
 
 
     
-  }
+//   }
 
 
-  fin.close();
+//   fin.close();
 
-}
+// }
 
 void
 Secretary::menu() {
@@ -266,7 +266,7 @@ Secretary::menu() {
     importbuf == "Y" ||
     importbuf == "y") {
     cout << "Importing course files from" << courseimportfile << "..." << endl;
-    import(courseimportfile);
+    // import(courseimportfile);
   }
 
   while (1) {
@@ -476,12 +476,45 @@ Secretary::menu() {
                   p = this -> find < Professor > (buffer);
                 }
               }
-              p -> assign_to_course(c);
+              if (p != NULL) {
+                p -> assign_to_course(c);
+              }
             }
 
           } else if (!userInput1.compare("grade")) {
             cout << "// GRADE A STUDENT //////" << endl;
-            cout << "Do you want to print a list of the courses you have been assigned to? (Y/N)" << endl;
+            
+              cout << "Enter Professor Registration:" << endl;
+              cin >> buffer;
+              shared_ptr < Professor > p = this -> find < Professor > (buffer);
+
+              while (p == NULL) {
+                buffer.clear();
+                cout << "Professor ID not found. Do you want to try again? (Y/N) ";
+                cin >> buffer;
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Professor ID:" << endl;
+                  cin >> buffer;
+                  p = this -> find < Professor > (buffer);
+                }
+              }
+
+              if (p != NULL) {
+                cout << "Do you want to print a list of the courses you have been assigned to? (Y/N)" << endl;
+                cin >> buffer;
+                if (buffer == "y" || buffer == "Y") {
+                  p->dump_courses();
+                }
+
+                cout << "Enter Course Serial Number: ";
+                cin >> buffer;
+                
+                 
+                
+              }
           }
         }
       }
