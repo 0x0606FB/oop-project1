@@ -7,6 +7,7 @@
 
 #include <memory>
 
+#include <sstream>
 #include <string>
 #include <type_traits>
 
@@ -209,29 +210,43 @@ continueop(void) {
 }
 
 
-// void
-// import(string im) {
+void
+import(string im) {
 
-//   string name, serialno, mandatory, dummy;
-//   int ects, semester, enrolled;
+  string name, serialno, mandatory, dummy;
+  int ects, semester, enrolled;
   
   
-//   std::ifstream fin;
-//   fin.open(im, std::ios::in);
+  std::ifstream fin;
+  fin.open(im, std::ios::in);
 
-//   while (fin.is_open()) {
+  while (fin) {
+    string word;
+    
+    while (std::getline(fin, word)) {
 
-//     while ()
+      std::istringstream iss(word);
+
+      iss >> name >> serialno >> ects >> semester >> enrolled >> mandatory;
+
+      cout << name << endl;
+      cout << serialno << endl;
+      cout << ects << endl;
+      cout << semester << endl;
+      cout << enrolled << endl;
+      cout << mandatory << endl;
+
+    }
     
 
 
     
-//   }
+  }
 
 
-//   fin.close();
+  fin.close();
 
-// }
+}
 
 void
 Secretary::menu() {
@@ -266,7 +281,7 @@ Secretary::menu() {
     importbuf == "Y" ||
     importbuf == "y") {
     cout << "Importing course files from" << courseimportfile << "..." << endl;
-    // import(courseimportfile);
+    import(courseimportfile);
   }
 
   while (1) {
@@ -511,8 +526,8 @@ Secretary::menu() {
 
                 cout << "Enter Course Serial Number: ";
                 cin >> buffer;
-                
-                 
+
+
                 
               }
           }
