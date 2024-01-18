@@ -36,6 +36,8 @@ class Secretary {
 
         template <typename T> std::shared_ptr<T>     find(string);
 
+        template <typename T> void      import(string);
+        
         void                         update_mandatoryno();
 
         int                   get_mandatoryno();
