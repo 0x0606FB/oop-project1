@@ -1,3 +1,5 @@
 diakrita k08 6 1 20 true 
 prog k10 6 1 25 true
 pithano k02 6 3 54 true
+sigsys k05 6 3 0 false
+anal1 k15 6 2 13 false 

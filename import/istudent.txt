@@ -1,0 +1,4 @@
+jim jimopoulos jim^2@mail.com 22022 2004 3 24 false
+nick trap trapstar@mail.com 22023 2004 3 24 false
+giannis giannakis john@mail.com 22024 5 38 false
+maria marida fish@mail.com 22025 1 0 false

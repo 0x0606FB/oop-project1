@@ -227,7 +227,6 @@ template <typename T> void Secretary::import(string im) {
 
       string name, serialno, mandatory, dummy;
       int ects, semester, enrolled;
-
       while (std::getline(fin, word)) {
 
         std::istringstream iss(word);
@@ -326,6 +325,42 @@ void Secretary::menu() {
     cout << "Importing course files from" << courseimportfile << "..." << endl;
     import <Course>(courseimportfile);
   }
+
+  for (auto &p: this->courselist){
+    cout << p->get_name() << endl;
+    cout << p->get_serialno() << endl;
+    cout << p->get_ects() << endl;
+    cout << p->get_semester() << endl;
+    cout << p->get_enrolled() << endl;
+    cout << p->get_mandatory()<< endl;
+    cout << "______________________" << endl;
+  }
+
+  for (auto &p: this->professorlist){
+    cout << p->get_name() << endl;
+    cout << p->get_surname() << endl;
+    cout << p->get_email() << endl;
+    cout << p->get_regnum() << endl;
+    cout << p->get_birthyear() << endl;
+    cout << "______________________" << endl;
+  }
+
+  for (auto &p: this->studentlist){
+    cout << p->get_name() << endl;
+    cout << p->get_surname() << endl;
+    cout << p->get_email() << endl;
+    cout << p->get_regnum() << endl;
+    cout << p->get_birthyear() << endl;
+    cout << p->get_semester()<< endl;
+    cout << p->get_ects()<< endl;
+    cout << p->get_passed()<< endl;
+    cout << "______________________" << endl;
+  }
+
+
+
+
+
 
   while (1) {
     string userInput1, buffer;
