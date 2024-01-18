@@ -24,14 +24,14 @@ void    Student::update_ects()                       {
         this->ects = ects;
 }
 
-bool    Student::completed_mandatories(void)   const      {
+bool    Student::completed_mandatories(int mandatories)   const      {
     auto counter = 0;
     for (auto & c : this->grades) {
         if ((c.course->get_mandatory() && c.grade >= 5.0 ) == true) {
             counter++;
         }
     }
-    if (counter == Secretary::get_mandatoryno()) {
+    if (counter == mandatories) {
         return true;
     }
     return false;
@@ -68,7 +68,7 @@ void    Student::get_grades (bool all_semesters) const                        {
 
 
 
-bool    Student::can_graduate() const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories());}
+bool    Student::can_graduate(int mandatories) const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories(mandatories));}
 
 void    Student::enroll(std::shared_ptr<Course> c) {
 
@@ -78,6 +78,8 @@ void    Student::enroll(std::shared_ptr<Course> c) {
     if (iterator != this->grades.end()) {
         cout << "ERROR: Student has already been enrolled to this course." << endl;
         return;
+    } else if (c->get_semester() > this->get_semester()) {
+        cout << "ERROR: Cannot register for a course with a higher minimum semester requirement." << endl;
     }
     grade_per_student g;
     g.grade = 0;

@@ -3,10 +3,12 @@
 
 #include "./person.hpp"
 #include "./course.hpp"
+#include "./professor.hpp"
 #include <future>
 #include <memory>
 #include <vector>
 #include <list>
+
 
 using std::vector;
 using std::list;
@@ -32,11 +34,11 @@ class Student : public Person {
         void        set_passed(bool);
 
         int         compute_ects();
-        bool        completed_mandatories() const;
+        bool        completed_mandatories(int) const;
         void        get_grades(bool) const;
         bool        get_passed() const;
         void        update_ects();
-        bool        can_graduate() const;
+        bool        can_graduate(int) const;
         int         get_semester() const;
         int         get_ects() const;
         void        enroll(std::shared_ptr<Course>);
@@ -45,7 +47,7 @@ class Student : public Person {
         // void        grade_entry(int, std::shared_ptr<Course>);
 
 
-        friend void grade_student(std::shared_ptr<Student>, std::shared_ptr<Course>);
+        friend void Professor::grade_student(std::shared_ptr<Student>, std::shared_ptr<Course>);
         
         Student(int semester= 0, int ects= 0, bool passed= false);
         ~Student();

@@ -148,9 +148,21 @@ template < typename T >
 //   }
 // }
 
+void
+Secretary::update_mandatoryno(void) {
+  int count = 0;
+  for (auto &c : this->courselist) {
+    if (c->get_mandatory() == true) {
+      count++;
+    }
+  }
+  this->mandatoryno = count;
+}
+
 int
 Secretary::get_mandatoryno() {
-  return 1;
+  this->update_mandatoryno();
+  return this->mandatoryno;
 }
 
 // Constructor and destructor.
@@ -225,17 +237,22 @@ import(string im) {
     
     while (std::getline(fin, word)) {
 
+      shared_ptr<Course> c(new Course());
+      
       std::istringstream iss(word);
 
       iss >> name >> serialno >> ects >> semester >> enrolled >> mandatory;
 
-      cout << name << endl;
-      cout << serialno << endl;
-      cout << ects << endl;
-      cout << semester << endl;
-      cout << enrolled << endl;
-      cout << mandatory << endl;
-
+      c->set_name(name);
+      c->set_serialno(serialno);
+      c->set_ects(ects);
+      c->set_semester(semester);
+      c->set_enrolled(enrolled);
+      if (mandatory == "true") {
+        c->set_mandatory(true);
+      } else {
+        c->set_mandatory(false);
+      }
     }
     
 
@@ -815,7 +832,7 @@ Secretary::menu() {
           } else if (!userInput1.compare("graduate")) {
             cout << "PRINT LIST OF STUDENTS WHO CAN GRADUATE ///////" << endl;
             for (auto & p: this -> studentlist) {
-              if (p -> can_graduate()) {
+              if (p -> can_graduate(this->get_mandatoryno())) {
                 cout << "Graduated :    " << p -> get_name() << "" << p -> get_surname() << endl;
                 cout << "Registered as:" << p -> get_regnum() << endl;
                 cout << "Congratulations!" << endl;

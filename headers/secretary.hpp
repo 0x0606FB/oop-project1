@@ -38,10 +38,9 @@ class Secretary {
 
         void                         update_mandatoryno();
 
-        static int                   get_mandatoryno();                        
-        // string find_person(const int);
+        int                   get_mandatoryno();
 
-        friend bool Student::completed_mandatories() const;
+        friend bool Student::completed_mandatories(int) const;
         
         Secretary& operator+ (Person*);
 

@@ -3,12 +3,14 @@
 
 #include "./person.hpp"
 #include "./course.hpp"
-#include "./student.hpp"
+
+class Student;
 
 #include <list>
 #include <memory>
 
 using std::list;
+
 
 class   Professor : public Person {
 

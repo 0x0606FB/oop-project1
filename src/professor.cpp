@@ -1,4 +1,5 @@
 #include "./../headers/professor.hpp"
+#include "./../headers/student.hpp"
 #include <algorithm>
 #include <memory>
 #include <list>
@@ -38,7 +39,7 @@ void Professor::print_stats() const{
     }
 }
 
-void grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course> c){
+void Professor::grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course> c){
     int grade;
     cout << "Enter grade: ";
     cin >> grade;
