@@ -17,7 +17,7 @@ typedef struct {
 
     std::shared_ptr<Course>     course;
     float                       grade;
-
+    bool                        counted;
 } grade_per_student;
 
 class Student : public Person {
