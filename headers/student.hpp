@@ -43,6 +43,7 @@ class Student : public Person {
         int         get_ects() const;
         void        enroll(std::shared_ptr<Course>);
         void        cleanup(std::shared_ptr<Course>);
+        bool        has_passed(std::shared_ptr<Course>) const;
 
 
         friend void Professor::grade_student(std::shared_ptr<Student>, std::shared_ptr<Course>);

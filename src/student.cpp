@@ -66,7 +66,14 @@ void    Student::get_grades (bool all_semesters) const                        {
             }
     }
 
-
+bool    Student::has_passed(std::shared_ptr<Course> c) const {
+    for (auto &g : this->grades) {
+        if (c == g.course && g.grade >= 5.0) {
+            return true;
+        }
+    }
+    return false;
+}
 
 bool    Student::can_graduate(int mandatories) const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories(mandatories));}
 

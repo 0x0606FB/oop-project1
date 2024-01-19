@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ostream>
+#include <fstream>
 using namespace std;
 
 #include <type_traits>
@@ -41,9 +43,15 @@ template <typename T> void func(void) {
 
 int main(void) {
 
-    func<A>();
-    func<B>();
-    func<C>();
+    // func<A>();
+    // func<B>();
+    // func<C>();
+
+    std::ofstream fout; 
+    fout.open("./export/excompleted.txt");
+    fout << "Hello World" << endl;
+
+    fout.close();
 
 
 

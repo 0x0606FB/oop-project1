@@ -1124,6 +1124,47 @@ void Secretary::menu() {
             cout << "// EXPORT A LIST OF STUDENTS WHO HAVE COMPLETED A COURSE  "
                     "///////"
                  << endl;
+
+            string exportfilename = "./../export/excompleted.txt";
+
+            std::ofstream fout;
+            fout.open(exportfilename, std::ios::out);
+
+            if (!fout.is_open()) {
+              std::cerr << "Error Opening/Writing to File" << endl;
+            } else {
+              cout << "Enter Course ID:" << endl;
+              cin >> buffer;
+              shared_ptr<Course> c = this->find<Course>(buffer);
+
+              while (c == NULL) {
+                buffer.clear();
+                cout << "Course ID not found. Do you want to try again? (Y/N)";
+                cin >> buffer;
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Course ID:" << endl;
+                  cin >> buffer;
+                  c = this->find<Course>(buffer);
+                }
+              }
+
+
+              if (c != NULL) {
+                for (auto &s : this->studentlist) {
+                  if (s->has_passed(c) == true) {
+                    fout << s->get_name() << " " << s->get_surname() << "OF SEMESTER:  "
+                         << s->get_semester() << " " << "COMPLETED" << endl;
+                  }
+                }
+              }
+              
+              fout.close();
+
+
+            }
           }
         }
       }
