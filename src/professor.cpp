@@ -60,8 +60,8 @@ void Professor::grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course
 void     Professor::dump_courses () const {
     for (auto &c : this->courselist) {
         cout << c->get_name() << "  :  " << c->get_serialno() << endl;
-        cout << "______________________________" << endl;
         cout << "Semester " << c->get_semester() << endl;
+        cout << "______________________________" << endl;
     }
 }
 
