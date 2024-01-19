@@ -213,17 +213,38 @@ bool continueop(void) {
   }
 }
 
-template <typename T> void Secretary::import(string im) {
+// template <typename T> void Secretary::import(string im ) {
 
-  shared_ptr<T> t(new T());
+//   std::ifstream istream;
+//   istream.open(im, std::ios::in);
+
+//   if (!istream.is_open()) {
+//     std::cerr << "Error Opening/Importing the File" << endl;
+//     return;
+//   }
+
+//   if constexpr (std::is_same_v<T, Student>) {
+//     cout << "Student" << endl;
+//   } else if constexpr (std::is_same_v<T, Professor>) {
+//     cout << "Professor" << endl;
+//   } else if constexpr (std::is_same_v<T, Course>) {
+//     cout << "Course" << endl;
+//   }
+
+//   istream.close();
+// }
+
+template <typename T> void Secretary::import(string im) {
 
   std::ifstream fin;
   fin.open(im, std::ios::in);
 
-  while (fin) {
-    string word;
-
+  
     if constexpr (std::is_same_v<T, Course>) {
+
+      while (fin) {
+      
+      string word;
 
       string name, serialno, mandatory, dummy;
       int ects, semester, enrolled;
@@ -232,6 +253,15 @@ template <typename T> void Secretary::import(string im) {
         std::istringstream iss(word);
 
         iss >> name >> serialno >> ects >> semester >> enrolled >> mandatory;
+
+        // cout << name << endl;
+        // cout << serialno << endl;
+        // cout << ects << endl;
+        // cout << semester << endl;
+        // cout << enrolled << endl;
+        // cout << mandatory << endl;
+
+        shared_ptr<T> t(new T());
 
         t->set_name(name);
         t->set_serialno(serialno);
@@ -245,17 +275,26 @@ template <typename T> void Secretary::import(string im) {
         }
         this->courselist.push_back(t);
       }
+      }
     } else if constexpr (std::is_same_v<T, Student>) {
+
+      while (fin) {
+
+        string word;
 
       string name, surname, email, reg_num, passed;
       int birthyear, semester, ects;
 
       while (std::getline(fin, word)) {
 
+        
         std::istringstream iss(word);
 
         iss >> name >> surname >> email >> reg_num >> birthyear >> semester >>
             ects >> passed;
+
+        shared_ptr<T> t(new T());
+
 
         t->set_name(name);
         t->set_surname(surname);
@@ -271,7 +310,12 @@ template <typename T> void Secretary::import(string im) {
         }
         this->studentlist.push_back(t);
       }
-    } else if constexpr (std::is_same_v<T, Professor>) {
+      }
+    } else {
+
+      while (fin) {
+
+      string word;
 
       string name, surname, email, reg_num;
       int birthyear;
@@ -282,6 +326,8 @@ template <typename T> void Secretary::import(string im) {
 
         iss >> name >> surname >> email >> reg_num >> birthyear;
 
+        shared_ptr<T> t(new T());
+
         t->set_name(name);
         t->set_surname(surname);
         t->set_email(email);
@@ -291,16 +337,14 @@ template <typename T> void Secretary::import(string im) {
         this->professorlist.push_back(t);
       }
     }
-  }
-
-  fin.close();
+    }
 }
 
 void Secretary::menu() {
 
   string importbuf;
-  string studentimportfile = "./../import/istud.txt";
-  string professorimportfile = "./../import/iprof.txt";
+  string studentimportfile = "./../import/istudent.txt";
+  string professorimportfile = "./../import/iprofessor.txt";
   string courseimportfile = "./../import/icourse.txt";
 
   cout << "Import Student Files? (Y/N)" << endl;
@@ -308,7 +352,7 @@ void Secretary::menu() {
   if (importbuf == "Y" || importbuf == "y") {
     cout << "Importing student files from" << studentimportfile << "..."
          << endl;
-    import <Student>(professorimportfile);
+    import <Student>(studentimportfile);
   }
 
   cout << "Import Professor Files? (Y/N)" << endl;
@@ -325,41 +369,6 @@ void Secretary::menu() {
     cout << "Importing course files from" << courseimportfile << "..." << endl;
     import <Course>(courseimportfile);
   }
-
-  for (auto &p: this->courselist){
-    cout << p->get_name() << endl;
-    cout << p->get_serialno() << endl;
-    cout << p->get_ects() << endl;
-    cout << p->get_semester() << endl;
-    cout << p->get_enrolled() << endl;
-    cout << p->get_mandatory()<< endl;
-    cout << "______________________" << endl;
-  }
-
-  for (auto &p: this->professorlist){
-    cout << p->get_name() << endl;
-    cout << p->get_surname() << endl;
-    cout << p->get_email() << endl;
-    cout << p->get_regnum() << endl;
-    cout << p->get_birthyear() << endl;
-    cout << "______________________" << endl;
-  }
-
-  for (auto &p: this->studentlist){
-    cout << p->get_name() << endl;
-    cout << p->get_surname() << endl;
-    cout << p->get_email() << endl;
-    cout << p->get_regnum() << endl;
-    cout << p->get_birthyear() << endl;
-    cout << p->get_semester()<< endl;
-    cout << p->get_ects()<< endl;
-    cout << p->get_passed()<< endl;
-    cout << "______________________" << endl;
-  }
-
-
-
-
 
 
   while (1) {

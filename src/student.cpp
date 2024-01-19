@@ -94,9 +94,9 @@ void    Student::enroll(std::shared_ptr<Course> c) {
 
 
 
-// void     Student::cleanup(std::shared_ptr<Course> c) {
-//     this->grades.remove_if([c] (grade_per_student g) {return g.course == c;});
-// }
+void     Student::cleanup(std::shared_ptr<Course> c) {
+    this->grades.remove_if([c] (grade_per_student g) {return g.course == c;});
+}
 
 Student::Student(int semester_, int ects_, bool passed_) : semester(semester_), ects(ects_), passed(passed_){};
 Student::~Student(){};
