@@ -51,17 +51,17 @@ void    Student::get_grades (bool all_semesters) const                        {
             for (auto & g : this->grades) {
                 if (g.course->get_semester() == this->get_semester()) {      
                     cout << g.course->get_name() << ":" << g.course->get_serialno() << endl;
-                    cout << g.course->get_semester()    << endl;
+                    cout << "Semester: " << g.course->get_semester()    << endl;
+                    cout << "Grade: " << g.grade << endl; 
                     cout <<        "---------------------------------"              << endl;
-                    cout << g.grade << endl; 
                 }
             }
     } else {
         for (auto & g : this->grades) {
-                    cout << g.course->get_name() << ":" << g.course->get_serialno() << endl;
-                    cout << g.course->get_semester()    << endl;
+                    cout << g.course->get_name() << ": " << g.course->get_serialno() << endl;
+                    cout << "Semester:" << g.course->get_semester()    << endl;
+                    cout << "Grade: " << g.grade << endl; 
                     cout <<        "---------------------------------"              << endl;
-                    cout << g.grade << endl; 
                 }
             }
     }

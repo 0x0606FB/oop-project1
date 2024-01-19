@@ -445,7 +445,7 @@ void Secretary::menu() {
 
             while (!check) {
               try {
-                cout << "CHANGE STUDENT DETAILS: Enter 'name', 'surname', "
+                cout << "CHANGE PROFESSOR DETAILS: Enter 'name', 'surname', "
                         "'birthyear', 'email', 'registry' (case sensitive)"
                      << endl;
                 cin >> userInput1;
@@ -633,8 +633,7 @@ void Secretary::menu() {
 
             if (p != NULL) {
               cout << "Do you want to print a list of the courses you have "
-                      "been assigned to? (Y/N)"
-                   << endl;
+                      "been assigned to? (Y/N) ";
               cin >> buffer;
               if (buffer == "y" || buffer == "Y") {
                 p->dump_courses();
@@ -670,6 +669,7 @@ void Secretary::menu() {
                   if (buffer != "Y" && buffer != "y") {
                     break;
                   } else {
+                    buffer.clear();
                     cout << "Enter Student register number: ";
                     cin >> buffer;
                   }
@@ -696,7 +696,7 @@ void Secretary::menu() {
           cin >> userInput1;
           if (userInput1.compare("add") && userInput1.compare("change") &&
               userInput1.compare("remove") && userInput1.compare("register") &&
-              userInput1.compare("graduate") && userInput1.compare("back")) {
+              userInput1.compare("stats") && userInput1.compare("graduate") && userInput1.compare("back")) {
             throw "False Expression.\n";
           }
           check = true;
@@ -966,13 +966,12 @@ void Secretary::menu() {
 
       while (!check) {
         try {
-          cout << "COURSE OPTIONS: Enter 'add', 'change' or 'remove', "
-                  "'assign', 'export' or 'back' to go back (case sensitive)"
+          cout << "COURSE OPTIONS: Enter 'add', 'change' or 'remove', 'export' or 'back' to go back (case sensitive)"
                << endl;
           cin >> userInput1;
           if (userInput1.compare("add") && userInput1.compare("change") &&
-              userInput1.compare("remove") && userInput1.compare("assign") &&
-              userInput1.compare("export") && userInput1.compare("back")) {
+              userInput1.compare("remove") && userInput1.compare("export") && 
+              userInput1.compare("back")) {
             throw "False Expression.\n";
           }
           check = true;
