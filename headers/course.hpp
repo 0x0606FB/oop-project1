@@ -28,14 +28,14 @@ class   Course {
         string              get_serialno();
         bool                get_mandatory();
         int                 get_enrolled();
-        int                 get_passed();
+        int                 get_passed();           
 
-        void                set_enrolled(int);
         void                set_semester(int);
         void                set_name(string);
         void                set_ects(int);
         void                set_serialno(string);
         void                set_mandatory(bool);
+        void                set_enrolled(int);
 
         Course(string name= NO_NAME, string serialno= NO_SERIAL,
                 int ects= NO_ECTS, int semester= NO_SEMESTER, bool mandatory= NO_MANDATORY);

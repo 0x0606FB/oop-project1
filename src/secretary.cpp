@@ -143,6 +143,7 @@ template <typename T> shared_ptr<T> Secretary::find(string s) {
 //   }
 // }
 
+// Updates number of mandatory Courses (used to calculate whether a Student has passed all mandatory Courses).
 void Secretary::update_mandatoryno(void) {
   int count = 0;
   for (auto &c : this->courselist) {
@@ -153,6 +154,7 @@ void Secretary::update_mandatoryno(void) {
   this->mandatoryno = count;
 }
 
+// Returns number of mandatory Courses.
 int Secretary::get_mandatoryno() {
   this->update_mandatoryno();
   return this->mandatoryno;
@@ -202,6 +204,7 @@ Secretary::~Secretary() {
 //     return secretarycreated;
 // }
 
+// Used to confirm actions throughout the menu.
 bool continueop(void) {
   cout << "Do you want to continue with the operation? (Y/N)" << endl;
   string input;
@@ -234,6 +237,12 @@ bool continueop(void) {
 //   istream.close();
 // }
 
+// File import function
+// NOTE: Files should be in the following format:
+// Course: name serialno ects semester enrolled mandatory
+// Student: name surname email reg_num birthyear semester ects passed 
+// Professor: name surname email reg_num birthyear
+// Files should also be named "icourse.txt", "istudent.txt" and "iprofessor.txt" respectively. 
 template <typename T> void Secretary::import(string im) {
 
   std::ifstream fin;
@@ -303,9 +312,9 @@ template <typename T> void Secretary::import(string im) {
         t->set_birthyear(birthyear);
         t->set_semester(semester);
         t->set_ects(ects);
-        if (passed == "true") {
+        if (passed == "true") {             //// To theloume afto edw? an kanoume add enan student tha prepei apla na kanoume set to passed se false/////////////////////
           t->set_passed(true);
-        } else {
+        } else {                      
           t->set_passed(false);
         }
         this->studentlist.push_back(t);
@@ -340,6 +349,8 @@ template <typename T> void Secretary::import(string im) {
     }
 }
 
+
+// DOCUMENTATION TBA !!!!!!!!!!!!!!! ////////////////////////////////////
 void Secretary::menu() {
 
   string importbuf;

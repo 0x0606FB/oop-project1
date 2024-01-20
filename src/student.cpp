@@ -14,6 +14,7 @@ void    Student::set_semester(int new_semester)         { Student::semester = ne
 void    Student::set_ects(int new_ects)                 { Student::ects = new_ects; }
 void    Student::set_passed(bool new_passed)            { Student::passed = new_passed; }
 
+// Updates Student's ECTs for each Course passed.
 void    Student::update_ects()                       {
         float ects = 0;
                 for (auto & g : this->grades) {
@@ -24,6 +25,8 @@ void    Student::update_ects()                       {
         this->ects = ects;
 }
 
+// Calculates how many mandatory Courses have been passed.
+// If all mandatory Courses have been passed, 1/3 requirements for the Student to graduate is complete. 
 bool    Student::completed_mandatories(int mandatories)   const      {
     auto counter = 0;
     for (auto & c : this->grades) {
@@ -45,6 +48,9 @@ int     Student::get_ects() const {return this->ects;}
 
 bool    Student::get_passed() const {return this->passed;}
 
+
+// Prints grades for each Course the Student has undertaken. 
+// Option to print Courses from all semesters or from current semester.
 void    Student::get_grades (bool all_semesters) const                        {
 
     if(all_semesters == false) {
@@ -66,6 +72,7 @@ void    Student::get_grades (bool all_semesters) const                        {
             }
     }
 
+// Used to determine whether the Student has passed given Course.
 bool    Student::has_passed(std::shared_ptr<Course> c) const {
     for (auto &g : this->grades) {
         if (c == g.course && g.grade >= 5.0) {
@@ -75,8 +82,13 @@ bool    Student::has_passed(std::shared_ptr<Course> c) const {
     return false;
 }
 
+// If the Student has completed 8 semester of studies, has passed all mandatory Courses and has collected the necessary amount of ECTs, they are eligible to graduate.
 bool    Student::can_graduate(int mandatories) const                     {return (this->semester >= MSEMESTER && this->ects >= GRADECTS && this->completed_mandatories(mandatories));}
 
+// Used for Students to undertake new Courses.
+// The Student's Course List is checked to determine whether Student has already undertaken given Course.
+// If the Student's current semester is lower than the semester the Course is taught in, an error message is printed.
+// If the conditions are met, the Course is added to the Student's Course List with a grade of 0.
 void    Student::enroll(std::shared_ptr<Course> c) {
 
     auto iterator = std::find_if(this->grades.begin(), this->grades.end(), 
@@ -100,7 +112,7 @@ void    Student::enroll(std::shared_ptr<Course> c) {
 
 
 
-
+// Removes a Course from the Student's Course List.
 void     Student::cleanup(std::shared_ptr<Course> c) {
     this->grades.remove_if([c] (grade_per_student g) {return g.course == c;});
 }
