@@ -119,13 +119,3 @@ void     Student::cleanup(std::shared_ptr<Course> c) {
 
 Student::Student(int semester_, int ects_, bool passed_) : semester(semester_), ects(ects_), passed(passed_){};
 Student::~Student(){};
-
-            // for (auto & g : this->grades) {
-            //    cout << g.course->get_name() << ":" << g.course->get_serialno() << endl;
-            //    cout << "---------------------------------"                     << endl; 
-            //    cout << "Course ECTS:" << g.course->get_ects()                  << endl; 
-            //    cout << "---------------------------------"                     << endl;
-            //    cout << "Course Semester:" << g.course->get_semester()          << endl; 
-            //    cout << "---------------------------------"                     << endl;
-            //    cout << g.course.  
-            // }

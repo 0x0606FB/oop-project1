@@ -39,8 +39,8 @@ void Professor::print_stats() const{
         
         cout << "Course Name: " << p->get_name() << endl;
         cout << "Course ID: " << p->get_serialno() << endl;
-        cout << "Students Enrolled:" << p->get_enrolled() << endl;
-
+        cout << "Students Enrolled: " << p->get_enrolled() << endl;
+        cout << "-----------------------------------" << endl;
     }
 }
 
@@ -68,7 +68,7 @@ void     Professor::dump_courses () const {
     for (auto &c : this->courselist) {
         cout << c->get_name() << "  :  " << c->get_serialno() << endl;
         cout << "Semester " << c->get_semester() << endl;
-        cout << "______________________________" << endl;
+        cout << "-----------------------------------" << endl;
     }
 }
 
