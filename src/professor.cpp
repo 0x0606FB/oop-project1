@@ -57,6 +57,7 @@ void Professor::grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course
     if (iterator != s->grades.end()) {
         iterator->grade = grade;
         cout << "Grade assigned successfully." << endl;
+        c->set_enrolled(c->get_enrolled()-1);
     } else {
         cout << "Student has not enrolled in this course." << endl;
     }
