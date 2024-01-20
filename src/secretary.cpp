@@ -130,19 +130,6 @@ template <typename T> shared_ptr<T> Secretary::find(string s) {
   }
 }
 
-// // Dumps all entries of the secretary vector via iterator.
-// template <typename T> void Secretary::dump() {
-//   if constexpr (std::is_same_v<T, Student>) {
-//     for (const auto p : this->studentlist) {
-//       cout << *p;
-//     }
-//   } else {
-//     for (const auto p : this->professorlist) {
-//       cout << *p;
-//     }
-//   }
-// }
-
 // Updates number of mandatory Courses (used to calculate whether a Student has passed all mandatory Courses).
 void Secretary::update_mandatoryno(void) {
   int count = 0;
@@ -162,47 +149,7 @@ int Secretary::get_mandatoryno() {
 
 // Constructor and destructor.
 Secretary::Secretary() {}
-Secretary::~Secretary() {
-  // for (auto &p : this->studentlist) {
-  //   delete p;
-  // }
-  // for (auto &p : this->professorlist) {
-  //   delete p;
-  // }
-  // for (auto &p : this->courselist) {
-  //   delete p;
-  // }
-}
-
-// Copy constructor.
-//  Secretary::Secretary(const Secretary &secr){
-
-//     for (Person *p : secr.personvec) {
-//         Person *p1 = new Person;
-
-//         Person::decrease_count();
-//         p1->set_name(p->get_name());
-//         p1->set_surname(p->get_surname());
-//         p1->set_email(p->get_email());
-//         p1->set_regnum(p->get_regnum());
-//         p1->set_birthyear(p->get_birthyear());
-
-//         this->personvec.push_back(p1);
-//     }
-
-// }
-
-// //Overloading function for the "+" operator.
-// Secretary& Secretary::operator+(Person *p) {
-//     this->add_person(p);
-//     return *this;
-// }
-
-// Overloading function for the "=" operator.
-// Secretary Secretary::operator=(const Secretary &secr) {
-//     Secretary secretarycreated(secr);
-//     return secretarycreated;
-// }
+Secretary::~Secretary() {}
 
 // Used to confirm actions throughout the menu.
 bool continueop(void) {
@@ -216,33 +163,13 @@ bool continueop(void) {
   }
 }
 
-// template <typename T> void Secretary::import(string im ) {
-
-//   std::ifstream istream;
-//   istream.open(im, std::ios::in);
-
-//   if (!istream.is_open()) {
-//     std::cerr << "Error Opening/Importing the File" << endl;
-//     return;
-//   }
-
-//   if constexpr (std::is_same_v<T, Student>) {
-//     cout << "Student" << endl;
-//   } else if constexpr (std::is_same_v<T, Professor>) {
-//     cout << "Professor" << endl;
-//   } else if constexpr (std::is_same_v<T, Course>) {
-//     cout << "Course" << endl;
-//   }
-
-//   istream.close();
-// }
-
 // File import function
 // NOTE: Files should be in the following format:
 // Course: name serialno ects semester enrolled mandatory
 // Student: name surname email reg_num birthyear semester ects passed 
 // Professor: name surname email reg_num birthyear
-// Files should also be named "icourse.txt", "istudent.txt" and "iprofessor.txt" respectively. 
+// Files should also be named "icourse.txt", "istudent.txt" and "iprofessor.txt" respectively.
+// File path from secretary.cpp should be "./../import".
 template <typename T> void Secretary::import(string im) {
 
   std::ifstream fin;
@@ -263,12 +190,6 @@ template <typename T> void Secretary::import(string im) {
 
         iss >> name >> serialno >> ects >> semester >> enrolled >> mandatory;
 
-        // cout << name << endl;
-        // cout << serialno << endl;
-        // cout << ects << endl;
-        // cout << semester << endl;
-        // cout << enrolled << endl;
-        // cout << mandatory << endl;
 
         shared_ptr<T> t(new T());
 
@@ -312,7 +233,7 @@ template <typename T> void Secretary::import(string im) {
         t->set_birthyear(birthyear);
         t->set_semester(semester);
         t->set_ects(ects);
-        if (passed == "true") {             //// To theloume afto edw? an kanoume add enan student tha prepei apla na kanoume set to passed se false/////////////////////
+        if (passed == "true") {
           t->set_passed(true);
         } else {                      
           t->set_passed(false);
@@ -390,7 +311,7 @@ void Secretary::menu() {
     cout << "Current Semester: "
          << (current_semester == 1 ? "Winter" : "Summer") << endl;
     while (!check) {
-      try {
+      try {                                                                           // Exception Handling for menu options
         cout << "Press 1 for Professor options, 2 for Student options, 3 for "
                 "Course options, 4 to move to next semester, 0 to quit menu"
              << endl;
@@ -443,13 +364,6 @@ void Secretary::menu() {
             cout << "// ADD PROFESSOR TO UNIVERSITY ///////" << endl;
             this->add_person<Professor>();
             cin.clear();
-            for (auto &p : this->professorlist) {
-              // cout << p->get_birthyear() << endl;
-              // cout << p->get_name() << endl;
-              // cout << p->get_email() << endl;
-              // cout << p->get_surname() << endl;
-              // cout << "----------------" << endl;
-            }
           } else if (!userInput1.compare("change")) {
             check = false;
             userInput1.clear();
@@ -544,8 +458,6 @@ void Secretary::menu() {
 
             cout << "Enter professor's registration number:" << endl;
             cin >> buffer;
-
-            // SEE IF IT GETS REMOVED //
             this->professorlist.remove_if([&buffer](shared_ptr<Professor> p) {
               return !p->get_regnum().compare(buffer);
             });
@@ -553,6 +465,29 @@ void Secretary::menu() {
           } else if (!userInput1.compare(("stats"))) {
             cout << "// PRINT PROFESSOR STATS FOR EACH COURSE UNDERTAKEN //////"
                  << endl;
+
+            cout << "Enter professor's registration number:" << endl;
+            cin >> buffer;
+            shared_ptr<Professor> professor = this->find<Professor>(buffer);
+            while (professor == NULL) {
+              buffer.clear();
+              cout << "Professor not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Professor's registration number:" << endl;
+                cin >> buffer;
+                professor = this->find<Professor>(buffer);
+              }
+            }
+
+            if (professor != NULL){
+              professor->print_stats();
+            }
+
+
           } else if (!userInput1.compare("assign")) {
             cout << "// ASSIGN PROFESSOR TO COURSE  ///////" << endl;
 
@@ -857,7 +792,6 @@ void Secretary::menu() {
             cout << "Enter student's registration number:" << endl;
             cin >> buffer;
 
-            // SEE IF IT GETS REMOVED //
             this->studentlist.remove_if([&buffer](shared_ptr<Student> s) {
               return !s->get_regnum().compare(buffer);
             });
@@ -884,29 +818,32 @@ void Secretary::menu() {
               }
             }
 
-            cout << "Enter Course ID:" << endl;
-            cin >> buffer;
-            shared_ptr<Course> c = this->find<Course>(buffer);
-
-            while (c == NULL) {
-              buffer.clear();
-              cout << "Course ID not found. Do you want to try again? (Y/N)";
+            if(s != NULL){
+              cout << "Enter Course ID:" << endl;
               cin >> buffer;
-              if (buffer != "Y" && buffer != "y") {
-                break;
-              } else {
+              shared_ptr<Course> c = this->find<Course>(buffer);
+
+              while (c == NULL) {
                 buffer.clear();
-                cout << "Enter Course ID:" << endl;
+                cout << "Course ID not found. Do you want to try again? (Y/N)";
                 cin >> buffer;
-                c = this->find<Course>(buffer);
+                if (buffer != "Y" && buffer != "y") {
+                  break;
+                } else {
+                  buffer.clear();
+                  cout << "Enter Course ID:" << endl;
+                  cin >> buffer;
+                  c = this->find<Course>(buffer);
+                }
+              }
+
+              if (c != NULL){
+                s->enroll(c);
+                buffer.clear();
               }
             }
-
-            s->enroll(c);
-            buffer.clear();
-
           } else if (!userInput1.compare("stats")) {
-            cout << "// PRINT A STUDENTS' STATS ///////" << endl;
+            cout << "// PRINT A STUDENT'S STATS ///////" << endl;
             cout << "Enter Student's register number:" << endl;
             cin >> buffer;
             shared_ptr<Student> s = this->find<Student>(buffer);
@@ -927,37 +864,37 @@ void Secretary::menu() {
               }
             }
 
-            cout << "Enter 'current' for current semester, 'all' for all "
-                    "semesters (case sensitive)"
-                 << endl;
-            cin >> buffer;
+            if (s != NULL){
+              cout << "Enter 'current' for current semester, 'all' for all "
+                      "semesters (case sensitive)"
+                  << endl;
+              cin >> buffer;
 
-            bool flag = false;
+              bool flag = false;
 
-            while (flag == false) {
-              if (buffer == "current") {
-                flag = true;
-                s->get_grades(false);
-              } else if (buffer == "all") {
-                flag = true;
-                s->get_grades(true);
-              } else {
-                cout << "Wrong input. Do you want to try again?(Y/N) ";
-                cin >> buffer;
-                if (buffer != "Y" && buffer != "y") {
-                  break;
+              while (flag == false) {
+                if (buffer == "current") {
+                  flag = true;
+                  s->get_grades(false);
+                } else if (buffer == "all") {
+                  flag = true;
+                  s->get_grades(true);
                 } else {
-                  buffer.clear();
-                  cout << "Enter 'current' for current semester, 'all' for all "
-                          "semesters (case sensitive)"
-                       << endl;
+                  cout << "Wrong input. Do you want to try again?(Y/N) ";
                   cin >> buffer;
+                  if (buffer != "Y" && buffer != "y") {
+                    break;
+                  } else {
+                    buffer.clear();
+                    cout << "Enter 'current' for current semester, 'all' for all "
+                            "semesters (case sensitive)"
+                        << endl;
+                    cin >> buffer;
+                  }
                 }
               }
+              buffer.clear();
             }
-
-            buffer.clear();
-
           } else if (!userInput1.compare("graduate")) {
             cout << "PRINT LIST OF STUDENTS WHO CAN GRADUATE ///////" << endl;
             for (auto &p : this->studentlist) {
@@ -997,14 +934,6 @@ void Secretary::menu() {
             cout << "// ADD COURSE TO UNIVERSITY ///////" << endl;
             this->add_course();
             cin.clear();
-            // for (auto &p : this->courselist) {
-            //   cout << p->get_name() << endl;
-            //   cout << p->get_serialno() << endl;
-            //   cout << p->get_ects() << endl;
-            //   cout << p->get_semester() << endl;
-            //   cout << p->get_enrolled() << endl;
-            //   cout << "----------------" << endl;
-            // }
 
           } else if (!userInput1.compare("change")) {
             check = false;
@@ -1029,11 +958,25 @@ void Secretary::menu() {
               }
             }
 
-            // EXCEPTION HANDLING ////
             cout << "Enter Course ID:" << endl;
             cin >> buffer;
             shared_ptr<Course> course = this->find<Course>(buffer);
 
+            while (course == NULL) {
+              buffer.clear();
+              cout << "Course ID not found. Do you want to try again? (Y/N)";
+              cin >> buffer;
+              if (buffer != "Y" && buffer != "y") {
+                break;
+              } else {
+                buffer.clear();
+                cout << "Enter Course ID:" << endl;
+                cin >> buffer;
+                course = this->find<Course>(buffer);
+              }
+            }
+
+            if (course != NULL){
             if (!userInput1.compare("name")) {
               cout << "// CHANGE COURSE NAME //////" << endl;
               cout << "-------------------------" << endl;
@@ -1097,6 +1040,7 @@ void Secretary::menu() {
               cin >> buffer1;
 
               course->set_mandatory((buffer1 == 0) ? false : true);
+            }
             }
           } else if (!userInput1.compare("remove")) {
             cout << "// REMOVE COURSE  ///////" << endl;
