@@ -49,7 +49,6 @@ void Professor::grade_student(std::shared_ptr<Student> s, std::shared_ptr<Course
     int grade;
     cout << "Enter grade: ";
     cin >> grade;
-    // s->grade_entry(grade, c);
 
     auto iterator = std::find_if(s->grades.begin(), s->grades.end(), 
                                         [c] (grade_per_student c1) {return c == c1.course;});

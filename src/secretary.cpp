@@ -30,7 +30,6 @@ int current_semester = 1;
 // Basic add person function.
 template < typename T > void Secretary::add_person() {
   shared_ptr < T > p(new T());
-  // Maybe EH //
   string buffer, reg_num;
   int birthyear;
 
